@@ -10,7 +10,7 @@ include('login_check.php');
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>UpConstruction Bootstrap Template - Index</title>
+    <title>AgriData Dynamics - Home</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -43,7 +43,7 @@ include('login_check.php');
             <a href="index.php" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="frontend/img/logo.png" alt=""> -->
-                <h1 id="logo">Battery Low Interactive<span>.</span></h1>
+                <h1 id="logo">AgriData Dynamics<span>.</span></h1>
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>

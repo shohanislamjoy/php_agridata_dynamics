@@ -2780,3 +2780,20 @@ section {
 .rate>label:hover~input:checked~label {
     color: #c59b08;
 }
+
+.analysis-section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+.analysis-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#curve_chart {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}

@@ -39,47 +39,9 @@ include('login_check.php');
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <?php include("header.php"); ?>
 
-            <a href="index.html" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>UpConstruction<span>.</span></h1>
-            </a>
-
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="blog.html" class="active">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav><!-- .navbar -->
-
-        </div>
-    </header><!-- End Header -->
+    <!-- End Header -->
 
     <main id="main">
 
@@ -87,10 +49,10 @@ include('login_check.php');
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/frontend/img/hero/unsplash/16.jpg');">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Blog</h2>
+                <h2>Analysis Page</h2>
                 <ol>
                     <li><a href="index.html">Home</a></li>
-                    <li>Blog</li>
+                    <li>Analysis Page</li>
                 </ol>
 
             </div>
@@ -106,13 +68,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
+                                <img src="frontend/img/charts/g1.png" class="img-fluid" alt="">
                                 <span class="post-date">December 12</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</h3>
+                                <h3 class="post-title">Total Crop Yield Data by Year</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -120,17 +82,17 @@ include('login_check.php');
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                                        <i class="bi bi-folder2"></i> <span class="ps-2">Analysis</span>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                                    The total yield data by year provides valuable insights into the productivity trends of various crops in different regions over the years.
                                 </p>
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_1.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -141,13 +103,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
+                                <img src="frontend/img/charts/g2.png" class="img-fluid" alt="">
                                 <span class="post-date">March 19</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Nisi magni odit consequatur autem nulla dolorem</h3>
+                                <h3 class="post-title">Crops Data On Total yeild</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -155,17 +117,17 @@ include('login_check.php');
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
+                                        <i class="bi bi-folder2"></i> <span class="ps-2">Analysis</span>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
+                                    The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.
                                 </p>
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_2.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -176,13 +138,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
+                                <img src="frontend/img/charts/g3.png" class="img-fluid" alt="">
                                 <span class="post-date">June 24</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</h3>
+                                <h3 class="post-title">Separately Average Yield Data of Crops by Year</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -190,17 +152,16 @@ include('login_check.php');
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
+                                        <i class="bi bi-folder2"></i> <span class="ps-2">Analysis</span>
                                     </div>
                                 </div>
 
-                                <p>
-                                    Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
+                                <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.
                                 </p>
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_3.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -246,31 +207,31 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-5.jpg" class="img-fluid" alt="">
-                                <span class="post-date">September 17</span>
+                                <img src="frontend/img/charts/g5.png" class="img-fluid" alt="">
+                                <span class="post-date">December 07</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Accusamus quaerat aliquam qui debitis facilis consequatur</h3>
+                                <h3 class="post-title">Total Production by Division.</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">John Parker</span>
+                                        <i class="bi bi-person"></i> <span class="ps-2">Julia White</span>
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                                        <i class="bi bi-folder2"></i> <span class="ps-2">Analysis</span>
                                     </div>
                                 </div>
 
                                 <p>
-                                    In itaque assumenda aliquam voluptatem qui temporibus iusto nisi quia. Autem vitae quas aperiam nesciunt mollitia tempora odio omnis. Ipsa odit sit ut amet necessitatibus. Quo ullam ut corrupti autem consequuntur totam dolorem.
+                                    The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.
                                 </p>
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_5.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -281,13 +242,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-6.jpg" class="img-fluid" alt="">
-                                <span class="post-date">December 07</span>
+                                <img src="frontend/img/charts/g6.png" class="img-fluid" alt="">
+                                <span class="post-date">December 27</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Distinctio provident quibusdam numquam aperiam aut</h3>
+                                <h3 class="post-title">Separately Average Yield Data of Crops by Year.</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -295,17 +256,17 @@ include('login_check.php');
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
+                                        <i class="bi bi-folder2"></i> <span class="ps-2">Analysis</span>
                                     </div>
                                 </div>
 
                                 <p>
-                                    Expedita et temporibus eligendi enim molestiae est architecto praesentium dolores. Illo laboriosam officiis quis. Labore officia quia sit voluptatem nisi est dignissimos totam. Et voluptate et consectetur voluptatem id dolor magni impedit. Omnis dolores sit.
+                                    The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.
                                 </p>
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_6.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -316,8 +277,8 @@ include('login_check.php');
 
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                     </ul>
                 </div><!-- End blog pagination -->

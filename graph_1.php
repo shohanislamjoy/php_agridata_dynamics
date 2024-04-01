@@ -4,16 +4,16 @@ include('login_check.php');
 // Database connection
 include('connection.php');
 
-// Fetch data from the database and calculate average yield per year
-$sql = "SELECT Year, AVG(Value) AS AverageValue FROM `yield` WHERE Item = 'Wheat' GROUP BY Year ORDER BY Year";
+// Fetching data from the database and calculate Total yield per year
+$sql = "SELECT Year, SUM(Value) AS TotalValue FROM `yield` WHERE Item = 'Wheat' GROUP BY Year ORDER BY Year";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts
 $data = array();
-$data[] = ['Year', 'Average Value'];
+$data[] = ['Year', 'Total Value'];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $data[] = [(string)$row['Year'], (float)$row['AverageValue']]; // Convert Year to string
+        $data[] = [(string)$row['Year'], (float)$row['TotalValue']]; // Convert Year to string
     }
 }
 $dataJSON = json_encode($data); // Store JSON data in a variable
@@ -33,7 +33,7 @@ $conn->close();
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>AgriData Dynamics - Home</title>
+    <title>AgriData Dynamics - Analysis</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -63,48 +63,7 @@ $conn->close();
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-            <a href="index.html" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>UpConstruction<span>.</span></h1>
-            </a>
-
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="blog.html" class="active">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- .navbar -->
-
-        </div>
-    </header>
+    <?php include('header.php'); ?>
     <!-- End Header -->
 
     <main id="main">
@@ -116,7 +75,7 @@ $conn->close();
 
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Average Yield Data by Year</h2>
+                <h2>Total Crop Yield Data by Year</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
                     <li>Analysis Page</li>
@@ -130,16 +89,16 @@ $conn->close();
         <section class="analysis-section">
             <div class="container">
                 <!-- Graph -->
-                <div id="curve_chart" class="text-center" style="width: 900px; height: 500px; text-align:center"></div>
+                <div id="curve_chart" class="charts""></div>
                 <!-- Analysis Content -->
-                <div class="row">
+                <div class=" row">
                     <div class="col-lg-12 analysis-content">
                         <h3>Analysis</h3>
-                        <p>The average yield data by year provides valuable insights into the productivity trends of various crops in different regions over the years. </p>
-                        <p>In Dhaka, the average yield of maize fluctuated between approximately 14,036 and 23,600 from 2000 to 2004. Meanwhile, the average yield of potatoes remained consistently high at around 167,000 during the same period. Rice, paddy showed an average yield ranging from approximately 13,000 to 20,000, and wheat had an average yield ranging from approximately 7,240 to 17,023 in Dhaka from 2000 to 2004.</p>
-                        <p>Moving to Barisal, the average yield of maize ranged from approximately 25,583 to 45,122 between 2008 and 2016. Potatoes in Barisal saw an increase in average yield from around 236,393 to 306,198 during the same period. Rice, paddy had an average yield ranging from approximately 13,952 to 17,502, while wheat showed an average yield ranging from approximately 11,038 to 17,912 from 2007 to 2016 in Barisal.</p>
-                        <p>Additionally, in Khulna, cassava had an average yield ranging from approximately 30,000 to 66,667 between 2000 and 2009. In Mymensingh, the average yield of cassava ranged from approximately 44,708 to 49,928 from 2007 to 2011. Sweet potatoes in Mymensingh showed an average yield ranging from approximately 61,392 to 62,955 during the same period. Yams in Mymensingh had an average yield ranging from approximately 33,345 to 34,911 from 2006 to 2011. In Khulna, yams showed an average yield ranging from approximately 33,901 to 39,216 between 2009 and 2016.</p>
-                        <p>Analyzing these average yield data points helps in understanding the productivity trends of different crops over the years and can provide insights into factors influencing yield variations in various regions.</p>
+                        <p>The total yield data by year provides valuable insights into the productivity trends of various crops in different regions over the years. </p>
+                        <p>In Dhaka, the Total yield of maize fluctuated between approximately 14,036 and 23,600 from 2000 to 2004. Meanwhile, the Total yield of potatoes remained consistently high at around 167,000 during the same period. Rice, paddy showed an Total yield ranging from approximately 13,000 to 20,000, and wheat had an Total yield ranging from approximately 7,240 to 17,023 in Dhaka from 2000 to 2004.</p>
+                        <p>Moving to Barisal, the Total yield of maize ranged from approximately 25,583 to 45,122 between 2008 and 2016. Potatoes in Barisal saw an increase in Total yield from around 236,393 to 306,198 during the same period. Rice, paddy had an Total yield ranging from approximately 13,952 to 17,502, while wheat showed an Total yield ranging from approximately 11,038 to 17,912 from 2007 to 2016 in Barisal.</p>
+                        <p>Additionally, in Khulna, cassava had an Total yield ranging from approximately 30,000 to 66,667 between 2000 and 2009. In Mymensingh, the Total yield of cassava ranged from approximately 44,708 to 49,928 from 2007 to 2011. Sweet potatoes in Mymensingh showed an Total yield ranging from approximately 61,392 to 62,955 during the same period. Yams in Mymensingh had an Total yield ranging from approximately 33,345 to 34,911 from 2006 to 2011. In Khulna, yams showed an Total yield ranging from approximately 33,901 to 39,216 between 2009 and 2016.</p>
+                        <p>Analyzing these Total yield data points helps in understanding the productivity trends of different crops over the years and can provide insights into factors influencing yield variations in various regions.</p>
                     </div>
                 </div>
             </div>
@@ -149,107 +108,8 @@ $conn->close();
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-        <div class="footer-content position-relative">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-info">
-                            <h3>UpConstruction</h3>
-                            <p>
-                                A108 Adam Street <br> NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>
-                            <div class="social-links d-flex mt-3">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End footer info column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Product Management</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Hic solutasetp</h4>
-                        <ul>
-                            <li><a href="#">Molestiae accusamus iure</a></li>
-                            <li><a href="#">Excepturi dignissimos</a></li>
-                            <li><a href="#">Suscipit distinctio</a></li>
-                            <li><a href="#">Dilecta</a></li>
-                            <li><a href="#">Sit quas consectetur</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Nobis illum</h4>
-                        <ul>
-                            <li><a href="#">Ipsam</a></li>
-                            <li><a href="#">Laudantium dolorum</a></li>
-                            <li><a href="#">Dinera</a></li>
-                            <li><a href="#">Trodelas</a></li>
-                            <li><a href="#">Flexo</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-legal text-center position-relative">
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
-                </div>
-            </div>
-        </div>
-
-    </footer>
+    <?php include('footer.php') ?>
     <!-- End Footer -->
-
-    <!-- Template Main JS File -->
-    <script src="frontend/main.js "></script>
-
-
-
-
-    <!-- Vendor JS Files -->
-    <script src="frontend/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
-    <script src="frontend/vendor/aos/aos.js "></script>
-    <script src="frontend/vendor/glightbox/js/glightbox.min.js "></script>
-    <script src="frontend/vendor/isotope-layout/isotope.pkgd.min.js "></script>
-    <script src="frontend/vendor/swiper/swiper-bundle.min.js "></script>
-    <script src="frontend/vendor/purecounter/purecounter_vanilla.js "></script>
-    <script src="frontend/vendor/php-email-form/validate.js "></script>
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -263,7 +123,7 @@ $conn->close();
             var data = google.visualization.arrayToDataTable(<?php echo $dataJSON; ?>); // Use $dataJSON variable
 
             var options = {
-                title: 'Average Yield Data by Year',
+                title: 'Total Yield Data by Year',
                 curveType: 'function',
                 legend: {
                     position: 'bottom'

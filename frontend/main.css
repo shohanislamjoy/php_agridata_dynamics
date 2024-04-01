@@ -2791,9 +2791,11 @@ section {
     margin: 0 auto;
 }
 
-#curve_chart {
+.charts {
     margin: 0 auto;
     text-align: center;
     margin-bottom: 10px;
     padding: 10px;
+    width: 900px;
+    height: 500px;
 }

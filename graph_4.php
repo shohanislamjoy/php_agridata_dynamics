@@ -4,19 +4,55 @@ include('login_check.php');
 // Database connection
 include('connection.php');
 
-// Fetch data from the database and calculate average yield per year
-$sql = "SELECT Year, AVG(Value) AS AverageValue FROM `yield` WHERE Item = 'Wheat' GROUP BY Year ORDER BY Year";
+// Fetch data from the database and calculate average yield per year for all items
+$sql = "SELECT Year, Item, AVG(Value) AS AverageValue FROM `yield` GROUP BY Year, Item ORDER BY Year, Item";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts
 $data = array();
-$data[] = ['Year', 'Average Value'];
+$items = array(); // Store unique items
+$itemCount = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $data[] = [(string)$row['Year'], (float)$row['AverageValue']]; // Convert Year to string
+        $year = (string)$row['Year'];
+        $item = (string)$row['Item'];
+        $averageValue = (float)$row['AverageValue'];
+
+        // Add item to the data array if it's not already present
+        if (!in_array($item, $items)) {
+            $items[] = $item;
+            $itemCount++;
+        }
+
+        // Find the index of the item in the data array
+        $itemIndex = array_search($item, $items);
+
+        // Add the average value to the corresponding year and item
+        if (!isset($data[$year])) {
+            $data[$year] = array_fill(0, $itemCount, null);
+        }
+        $data[$year][$itemIndex] = $averageValue;
     }
 }
-$dataJSON = json_encode($data); // Store JSON data in a variable
+
+// Add headers for the items
+$header = ['Year'];
+foreach ($items as $item) {
+    $header[] = $item;
+}
+$dataArray = array($header);
+
+// Fill data array with values
+foreach ($data as $year => $values) {
+    $row = [$year];
+    foreach ($values as $value) {
+        $row[] = $value;
+    }
+    $dataArray[] = $row;
+}
+
+// Convert data to Google Charts DataTable format
+$dataJSON = json_encode($dataArray); // Store JSON data in a variable
 
 // Close database connection
 $conn->close();
@@ -33,7 +69,7 @@ $conn->close();
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>AgriData Dynamics - Home</title>
+    <title>AgriData Dynamics - Analysis</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -57,196 +93,59 @@ $conn->close();
     <!-- Template Main CSS File -->
     <link href="frontend/main.css" rel="stylesheet">
 
+
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-            <a href="index.html" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>UpConstruction<span>.</span></h1>
-            </a>
-
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="blog.html" class="active">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- .navbar -->
-
-        </div>
-    </header>
+    <?php include('header.php'); ?>
     <!-- End Header -->
 
     <main id="main">
 
-        <!-- ======= Breadcrumbs ======= -->
+
+        <!-- Breadcrumbs -->
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/frontend/img/hero/unsplash/16.jpg');">
+
+
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Blog</h2>
+                <h2>Crops Separately Average Yield Data by Year</h2>
                 <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Blog</li>
+                    <li><a href="index.php">Home</a></li>
+                    <li>Analysis Page</li>
                 </ol>
 
             </div>
-        </div>
-        <!-- End Breadcrumbs -->
 
-        <!-- ======= Blog Section ======= -->
-        <section id="blog" class="blog text-center">
-            <div class="container text-center">
-                <div id="curve_chart" style="width: 900px; height: 500px"></div>
-                <a href="test_2.php">lol</a>
+        </div>
+
+        <!-- Analysis Section -->
+        <section class="analysis-section">
+            <div class="container">
+                <!-- Graph -->
+                <div id="curve_chart" class="charts"></div>
+                <!-- Analysis Content -->
+                <div class="row">
+                    <div class="col-lg-12 analysis-content">
+                        <h3>Analysis</h3>
+                        <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
+                        <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
+                        <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
+                        <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
+                    </div>
+
+                </div>
             </div>
         </section>
-        <!-- End Blog Section -->
 
     </main>
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-        <div class="footer-content position-relative">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-info">
-                            <h3>UpConstruction</h3>
-                            <p>
-                                A108 Adam Street <br> NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>
-                            <div class="social-links d-flex mt-3">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End footer info column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Product Management</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Hic solutasetp</h4>
-                        <ul>
-                            <li><a href="#">Molestiae accusamus iure</a></li>
-                            <li><a href="#">Excepturi dignissimos</a></li>
-                            <li><a href="#">Suscipit distinctio</a></li>
-                            <li><a href="#">Dilecta</a></li>
-                            <li><a href="#">Sit quas consectetur</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Nobis illum</h4>
-                        <ul>
-                            <li><a href="#">Ipsam</a></li>
-                            <li><a href="#">Laudantium dolorum</a></li>
-                            <li><a href="#">Dinera</a></li>
-                            <li><a href="#">Trodelas</a></li>
-                            <li><a href="#">Flexo</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-legal text-center position-relative">
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
-                </div>
-                <div class="credits">
-
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                </div>
-            </div>
-        </div>
-
-    </footer>
+    <?php include('footer.php') ?>
     <!-- End Footer -->
-
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-
-    <div id="preloader "></div>
-
-    <!-- Template Main JS File -->
-    <script src="frontend/main.js "></script>
-
-
-
-
-    <!-- Vendor JS Files -->
-    <script src="frontend/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
-    <script src="frontend/vendor/aos/aos.js "></script>
-    <script src="frontend/vendor/glightbox/js/glightbox.min.js "></script>
-    <script src="frontend/vendor/isotope-layout/isotope.pkgd.min.js "></script>
-    <script src="frontend/vendor/swiper/swiper-bundle.min.js "></script>
-    <script src="frontend/vendor/purecounter/purecounter_vanilla.js "></script>
-    <script src="frontend/vendor/php-email-form/validate.js "></script>
-
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {
@@ -260,8 +159,23 @@ $conn->close();
             var options = {
                 title: 'Average Yield Data by Year',
                 curveType: 'function',
+                linewidth: 8,
                 legend: {
                     position: 'bottom'
+                },
+                isStacked: true,
+                hAxis: {
+                    title: 'Year',
+                    titleTextStyle: {
+                        color: '#333',
+                        bold: true
+                    },
+                    format: '####', // Format years without commas
+                    slantedText: true, // Slant the text
+                    slantedTextAngle: 45 // Angle of slanted text
+                },
+                vAxis: {
+                    minValue: 0
                 }
             };
 

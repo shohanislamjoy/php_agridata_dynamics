@@ -52,7 +52,7 @@ include('login_check.php');
                 <ul>
                     <li><a href="index.php" class="active">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#project">Projects</a></li>
+                    <li><a href="analysis_page.php">Analysis Page</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
 
@@ -149,9 +149,10 @@ include('login_check.php');
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
-                        <h2 data-aos="fade-down">Welcome to <span>Battery Low Interactive</span></h2>
-                        <p data-aos="fade-up">One of the first and foremost exponents of AR and VR technologies in Bangladesh. Web, app, and game development as well as creative marketing is also our forte. We make sure that our products and services enhance your identity
-                            in the professional world.</p>
+                        <h2 data-aos="fade-down">Welcome to <span>AgriData Dynamics</span></h2>
+                        <p data-aos="fade-up"><b>W</b>e pioneer advanced data analytics to revolutionize agriculture. Our expertise in crop weather analysis and field data management empowers farmers with actionable insights for sustainable growth.</p>
+
+
                         <a data-aos="fade-up" data-aos-delay="200" href="#contact" class="btn-contact">Contact Us</a>
                     </div>
                 </div>
@@ -177,92 +178,29 @@ include('login_check.php');
     <!-- End Hero Section -->
 
     <main id="main">
-
-
-        <!-- ======= project Section ======= -->
-        <section id="projects" class="projects">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Projects</h2>
-                    <p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore quam porro nihil id ratione ea sunt quis dolorem dolore earum</p>
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="content">
+                            <h3>About Us</h3>
+                            <p>At Agridata Dynamics, we are dedicated to harnessing cutting-edge technology to transform the agricultural landscape. With a firm commitment to sustainable farming practices and data-driven solutions, we empower farmers and agricultural professionals to navigate the complexities of modern agriculture with confidence.</p>
+                            <p>Our success is rooted in integrity, collaboration, and a profound respect for the land. We believe in forging meaningful partnerships with farmers, agronomists, researchers, and industry stakeholders to drive positive change and foster a more sustainable future for agriculture.</p>
+                            <p>At Agridata Dynamics, we are not merely revolutionizing agriculture – we are cultivating a brighter, more sustainable future for generations to come.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                        <div class="image">
+                            <!-- Replace 'image_url' with the actual URL of the image representing Agridata Dynamics -->
+                            <img src="frontend/img/hero/unsplash/data_about.jpg" class="img-fluid" alt="About Us Image">
+                        </div>
+                    </div>
                 </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg" style="background-image: url(frontend/img/project-1.jpg);"></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Eligendi omnis sunt veritatis.</h4>
-                                        <p>Fuga in dolorum et iste et culpa. Commodi possimus nesciunt modi voluptatem placeat deleniti adipisci. Cum delectus doloribus non veritatis. Officia temporibus illo magnam. Dolor eos et.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg" style="background-image: url(frontend/img/project-2.jpg);"></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Possimus ut sed velit assumenda</h4>
-                                        <p>Sunt deserunt maiores voluptatem autem est rerum perferendis rerum blanditiis. Est laboriosam qui iste numquam laboriosam voluptatem architecto. Est laudantium sunt at quas aut hic. Eum dignissimos.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg" style="background-image: url(frontend/img/project-3.jpg);"></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Error beatae dolor inventore aut</h4>
-                                        <p>Dicta porro nobis. Velit cum in. Nesciunt dignissimos enim molestiae facilis numquam quae quaerat ipsam omnis. Neque debitis ipsum at architecto officia laboriosam odit. Ut sunt temporibus nulla culpa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="card-item">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card-bg" style="background-image: url(frontend/img/project-4.jpg);"></div>
-                                </div>
-                                <div class="col-xl-7 d-flex align-items-center">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Expedita voluptas ut ut nesciunt</h4>
-                                        <p>Aut est quidem doloremque voluptatem magnam quis excepturi vero quia. Eum eos doloremque architecto illo at beatae dolore. Fugiat suscipit et sint ratione dolores. Aut aliquid ea dolores libero nobis.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card Item -->
-
-                </div>
-
             </div>
         </section>
-        <!-- End project Section -->
+        <!-- End About Us Section -->
+
 
         <!-- ======= Services Section ======= -->
         <section id="services" class="services section-bg">
@@ -270,7 +208,7 @@ include('login_check.php');
 
                 <div class="section-header">
                     <h2>Services</h2>
-                    <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti fignissimos eos quam</p>
+                    <p>Explore our range of services tailored to optimize your agricultural operations.</p>
                 </div>
 
                 <div class="row gy-4">
@@ -280,8 +218,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-mountain-city"></i>
                             </div>
-                            <h3>Nesciunt Mete</h3>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+                            <h3>Data Analysis</h3>
+                            <p>Unlock insights from your agricultural data to make informed decisions and improve productivity.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -292,8 +230,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-arrow-up-from-ground-water"></i>
                             </div>
-                            <h3>Eosle Commodi</h3>
-                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                            <h3>Predictive Modeling</h3>
+                            <p>Anticipate crop yields, disease outbreaks, and market trends through advanced predictive modeling techniques.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -304,8 +242,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-compass-drafting"></i>
                             </div>
-                            <h3>Ledo Markt</h3>
-                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                            <h3>Crop Monitoring</h3>
+                            <p>Monitor crop health, growth stages, and environmental conditions in real-time to optimize cultivation practices.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -316,8 +254,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-trowel-bricks"></i>
                             </div>
-                            <h3>Asperiores Commodit</h3>
-                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                            <h3>Farm Management Software</h3>
+                            <p>Streamline farm operations, track inventory, and manage resources efficiently with our comprehensive software solutions.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -328,8 +266,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-helmet-safety"></i>
                             </div>
-                            <h3>Velit Doloremque</h3>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                            <h3>Consulting Services</h3>
+                            <p>Receive expert guidance and customized solutions tailored to your specific agricultural challenges and goals.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -340,8 +278,8 @@ include('login_check.php');
                             <div class="icon">
                                 <i class="fa-solid fa-arrow-up-from-ground-water"></i>
                             </div>
-                            <h3>Dolori Architecto</h3>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                            <h3>Data Analytics</h3>
+                            <p>Harness the power of data analytics to optimize resource allocation, minimize risks, and maximize agricultural productivity.</p>
                             <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -361,7 +299,7 @@ include('login_check.php');
 
                 <div class="section-header">
                     <h2>Testimonials</h2>
-                    <p>Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et autem uia reprehenderit sunt deleniti</p>
+                    <p>Here are some testimonials from our satisfied clients. We take pride in delivering exceptional services and exceeding our clients' expectations. Read on to see what they have to say about their experience working with us.</p>
                 </div>
 
                 <div class="slides-2 swiper">
@@ -381,27 +319,31 @@ include('login_check.php');
         <!-- ======= contact form ======= -->
         <section id="contact" class="contact section-bg">
             <div class="container">
-
                 <div class="row justify-content-between gy-4">
-
                     <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
                         <div class="content">
-                            <h3>Minus hic non reiciendis ea possimus at quia.</h3>
-                            <p>Rem id rerum. Debitis deserunt quidem delectus expedita ducimus dolor. Aut iusto ipsa. Eos ipsum nobis ipsa soluta itaque perspiciatis fuga ipsum perspiciatis. Eum amet fugiat totam nisi possimus ut delectus dicta.
-                            <p>Aliquam velit deserunt autem. Inventore et saepe. Tenetur suscipit eligendi labore culpa eos. Deserunt porro magni qui necessitatibus dolorem at animi cupiditate.</p>
+                            <h3>Contact Us</h3>
+                            <p>At Agridata Dynamics, we're passionate about leveraging cutting-edge technology to revolutionize agriculture. With a deep-rooted commitment to sustainable farming practices and data-driven solutions, we empower farmers and agricultural professionals to navigate the complexities of modern agriculture with confidence.</p>
+
+                            <!-- <p>Our journey began with a simple yet profound vision: to bridge the gap between traditional farming methods and innovative technologies. Founded by a team of agronomists, data scientists, and technology enthusiasts, Agridata Dynamics is driven by the belief that data holds the key to unlocking the full potential of agriculture.
+
+                            <p> At the heart of our mission lies a dedication to empowering farmers with actionable insights derived from comprehensive data analysis. By harnessing the power of advanced analytics, predictive modeling, and artificial intelligence, we enable farmers to make informed decisions that drive productivity, optimize resource allocation, and mitigate risks.</p>
+
+                            <p>We understand that every farm is unique, facing its own set of challenges and opportunities. That's why we take a personalized approach to our solutions, tailoring our services to meet the specific needs and goals of each client. Whether it's crop monitoring, soil analysis, yield forecasting, or farm management software, we're committed to delivering innovative solutions that empower farmers to thrive in an ever-evolving agricultural landscape.</p> -->
+
+                            <p>Beyond technology, our success is built on a foundation of integrity, collaboration, and a deep-rooted respect for the land. We believe in fostering meaningful partnerships with farmers, agronomists, researchers, and industry stakeholders to drive positive change and create a more sustainable future for agriculture.</p>
+
+                            <p>At Agridata Dynamics, we're not just revolutionizing agriculture — we're cultivating a brighter, more sustainable future for generations to come.</p>
+
                         </div>
                     </div>
-
                     <div class="col-lg-5" data-aos="fade">
                         <!-- Alert message -->
                         <div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-                            <strong>Success!</strong> Your quote request has been sent successfully. Thank you!
+                            <strong>Success!</strong> Your message has been received successfully. Thank you!
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-
                         <form id="quoteForm" action="submit_contact.php" method="post" class="php-email-form">
-                            <h3>Get a quote</h3>
-                            <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
                             <div class="row gy-3">
                                 <div class="col-md-12">
                                     <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
@@ -413,15 +355,13 @@ include('login_check.php');
                                     <textarea class="form-control" id="message" name="message" rows="6" placeholder="Message" required></textarea>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="form-control">Send A Message</button>
+                                    <button type="submit" id="submitButton">Send A Message</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <!-- End Quote Form -->
-
                 </div>
-
             </div>
         </section>
         <!-- End contact form Section -->
@@ -430,108 +370,9 @@ include('login_check.php');
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <div class="footer-content position-relative">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-info">
-                            <h3>Battery Low Interactive</h3>
-                            <p>
-                                A108 Adam Street <br> NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@batterylowinteractive.com<br>
-                            </p>
-                            <div class="social-links d-flex mt-3">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End footer info column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Game Development</a></li>
-                            <li><a href="#">Inventory Management</a></li>
-                            <li><a href="#">ERP</a></li>
-                            <li><a href="#">Application Development</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Other Services</h4>
-                        <ul>
-                            <li><a href="#">Creative Marketing</a></li>
-                            <li><a href="#">Service 2</a></li>
-                            <li><a href="#">Service 3</a></li>
-                            <li><a href="#">Service 4</a></li>
-                            <li><a href="#">Service 5</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Additional Links</h4>
-                        <ul>
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                            <li><a href="#">Link 4</a></li>
-                            <li><a href="#">Link 5</a></li>
-                        </ul>
-                    </div>
-                    <!-- End footer links column-->
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-legal text-center position-relative">
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Battery Low Interactive</span></strong>. All Rights Reserved
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include('footer.php') ?>
     <!-- End Footer -->
 
-
-    <a href="# " class="scroll-top d-flex align-items-center justify-content-center "><i class="bi bi-arrow-up-short "></i></a>
-
-    <div id="preloader "></div>
-
-    <!-- Template Main JS File -->
-    <script src="frontend/main.js "></script>
-
-
-
-
-    <!-- Vendor JS Files -->
-    <script src="frontend/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
-    <script src="frontend/vendor/aos/aos.js "></script>
-    <script src="frontend/vendor/glightbox/js/glightbox.min.js "></script>
-    <script src="frontend/vendor/isotope-layout/isotope.pkgd.min.js "></script>
-    <script src="frontend/vendor/swiper/swiper-bundle.min.js "></script>
-    <script src="frontend/vendor/purecounter/purecounter_vanilla.js "></script>
-    <script src="frontend/vendor/php-email-form/validate.js "></script>
 
 </body>
 

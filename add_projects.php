@@ -4,13 +4,43 @@ if (!$userLoggedIn) {
 	header("location:login.php");
 	exit();
 }
-// Database configuration
+
 include('connection.php');
 
-// Fetch data from the database
-$sql = "SELECT * FROM contact";
-$result = $conn->query($sql);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	// Get form data
+	$domain = $_POST['domain'];
+	$area_code = $_POST['area_code'];
+	$area = $_POST['area'];
+	$item_code = $_POST['item_code'];
+	$item = $_POST['item'];
+	$year_code = $_POST['year_code'];
+	$value = $_POST['value'];
+
+	// Validate data (optional, can be added for better security)
+	// ... (e.g., check if domain length is within allowed limit)
+
+	// Prepare SQL statement (using prepared statements for security)
+	$sql = "INSERT INTO yield (Domain, `Area Code`, Area, `Item Code`, Item, `Year Code`, Year, Value) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("sssssiii", $domain, $area_code, $area, $item_code, $item, $year_code, $year_code, $value);
+
+	if ($stmt->execute() === TRUE) {
+		$successMessage = "Yield data added successfully!";
+	} else {
+		$errorMessage = "Error: " . $conn->error;
+	}
+
+	// Close statement and connection
+	$stmt->close();
+	$conn->close();
+}
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +48,7 @@ $result = $conn->query($sql);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Administrative Panel</title>
+	<title>Administrative Panel:: projects</title>
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
@@ -26,8 +56,59 @@ $result = $conn->query($sql);
 	<!-- Theme style -->
 	<link rel="stylesheet" href="frontend/css/adminlte.min.css">
 	<link rel="stylesheet" href="frontend/css/custom.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		form {
+			max-width: 600px;
+			width: 100%;
+			margin: 3% auto;
+			padding: 20px;
+			background-color: #fff;
+			border: 2px solid #ddd;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		}
+
+		form label {
+			display: block;
+			margin-top: 10px;
+		}
+
+		form input[type="text"],
+		form textarea,
+		form input[type="number"],
+		form select,
+		form input[type="file"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		form select {
+			height: 40px;
+		}
+
+		form button {
+			background-color: #333;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			display: block;
+			margin: 0 auto;
+			/* Center the button */
+		}
+	</style>
+
+
 
 </head>
+
+
 
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
@@ -131,103 +212,76 @@ $result = $conn->query($sql);
 		</aside>
 
 
-
-
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<!-- Main content -->
-			<section class="content">
-				<!-- Default box -->
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-4 col-6">
-							<div class="small-box card">
-								<div class="inner text-center">
-									<?php
-									$select_users = mysqli_query($conn, "SELECT * FROM `users` ") or die('query faild');
-									$number_of_users = mysqli_num_rows($select_users);
-									?>
-									<h3><?php echo $number_of_users; ?></h3>
-									<p>Total Users</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-bag"></i>
-								</div>
-								<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-							</div>
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Add projects</h1>
 						</div>
 
-						<div class="col-lg-4 col-6">
-							<div class="small-box card">
-								<div class="inner text-center">
-									<?php
-									$select_users = mysqli_query($conn, "SELECT * FROM `testimonials` ") or die('query faild');
-									$number_of_users = mysqli_num_rows($select_users);
-									?>
-									<h3><?php echo $number_of_users; ?></h3>
-
-									<p>Total Reviews</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-stats-bars"></i>
-								</div>
-								<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-6">
-							<div class="small-box card">
-								<div class="inner">
-									<h3>9000000 Taka</h3>
-									<p>Total Revenue</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-person-add"></i>
-								</div>
-								<a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
-							</div>
-						</div>
 					</div>
 				</div>
 
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Message</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							while ($row = $result->fetch_assoc()) {
-								echo '<tr>';
-								echo '<td>' . $row["name"] . '</td>';
-								echo '<td>' . $row["email"] . '</td>';
-								echo '<td>' . $row["message"] . '</td>';
-								echo '<td><a href="delete_contact.php?id=' . $row["id"] . '">Delete</a></td>';
-								echo '</tr>';
-							}
+				<div class="container mt-5">
+					<?php if (isset($successMessage)) : ?>
+						<div id="success-message" class="alert alert-success" role="alert">
+							<?php echo $successMessage; ?>
+						</div>
+					<?php elseif (isset($errorMessage)) : ?>
+						<div id="error-message" class="alert alert-danger" role="alert">
+							<?php echo $errorMessage; ?>
+						</div>
+					<?php endif; ?>
+
+					<form action="add_projects.php" method="POST">
+						<div class="form-group">
+							<label for="domain">Domain</label>
+							<input type="text" name="domain" class="form-control" maxlength="5" required>
+						</div>
+						<div class="form-group">
+							<label for="area_code">Area Code</label>
+							<input type="number" name="area_code" class="form-control" min="1" max="9" required>
+						</div>
+						<div class="form-group">
+							<label for="area">Area</label>
+							<input type="text" name="area" class="form-control" maxlength="10" required>
+						</div>
+						<div class="form-group">
+							<label for="item_code">Item Code</label>
+							<input type="number" name="item_code" class="form-control" min="100" max="999" required>
+						</div>
+						<div class="form-group">
+							<label for="item">Item</label>
+							<input type="text" name="item" class="form-control" maxlength="14" required>
+						</div>
+						<div class="form-group">
+							<label for="year_code">Year Code</label>
+							<input type="number" name="year_code" class="form-control" min="2000" max="9999" required>
+						</div>
+						<div class="form-group">
+							<label for="value">Value</label>
+							<input type="number" name="value" class="form-control" min="0" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
 
 
-							$conn->close();
-							?>
-						</tbody>
-					</table>
+
 				</div>
+
+
+			</section>
+			<!-- /.content -->
 		</div>
-
-		</section>
-		<!-- /.content -->
-
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
 
-			<strong>Copyright &copy; AgriData DynamicsAll rights reserved.
+			<strong>Copyright &copy; AgriData Dynamics All rights reserved.
 		</footer>
+
 	</div>
 	<!-- ./wrapper -->
 	<!-- jQuery -->
@@ -238,11 +292,31 @@ $result = $conn->query($sql);
 	<script src="frontend/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="frontend/js/demo.js"></script>
+
+
+
 	<script>
 		document.getElementById('logout-button').addEventListener('click', function() {
 			// Redirect to the logout page
 			window.location.href = 'logout.php'; // Change 'logout.php' to the actual path of your logout script
 		});
+
+		function hideMessages() {
+			setTimeout(function() {
+				var successMessage = document.getElementById('success-message');
+				var errorMessage = document.getElementById('error-message');
+
+				if (successMessage) {
+					successMessage.style.display = 'none';
+				}
+				if (errorMessage) {
+					errorMessage.style.display = 'none';
+				}
+			}, 1000); // 1000 milliseconds = 1 second
+		}
+
+		// Call the hideMessages function when the page loads
+		document.addEventListener('DOMContentLoaded', hideMessages);
 	</script>
 
 </body>

@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <img src="frontend/img/farm_1.png" alt="" class="img-fluid">
+                    <img src="assets/img/farm_1.png" alt="" class="img-fluid">
                 </div>
                 <!-- End footer links column-->
                 <div class="col-lg-4 col-md-6">
@@ -77,16 +77,16 @@
 
 
 <!-- Template Main JS File -->
-<script src="frontend/main.js "></script>
+<script src="assets/main.js "></script>
 
 
 
 
 <!-- Vendor JS Files -->
-<script src="frontend/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
-<script src="frontend/vendor/aos/aos.js "></script>
-<script src="frontend/vendor/glightbox/js/glightbox.min.js "></script>
-<script src="frontend/vendor/isotope-layout/isotope.pkgd.min.js "></script>
-<script src="frontend/vendor/swiper/swiper-bundle.min.js "></script>
-<script src="frontend/vendor/purecounter/purecounter_vanilla.js "></script>
-<script src="frontend/vendor/php-email-form/validate.js "></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
+<script src="assets/vendor/aos/aos.js "></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js "></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js "></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js "></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js "></script>
+<script src="assets/vendor/php-email-form/validate.js "></script>

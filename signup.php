@@ -33,7 +33,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
 
-    <link rel="stylesheet" href="frontend/signup.css">
+    <link rel="stylesheet" href="assets/signup.css">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -47,7 +47,7 @@ $conn->close();
 <body>
     <main>
 
-        <section class="vh-100 bg-image" style="background-image: url('/frontend/img/vr_1.jpg');">
+        <section class="vh-100 bg-image" style="background-image: url('/assets/img/vr_1.jpg');">
             <div class="mask d-flex align-items-center h-100 gradient-custom-3">
                 <div class="container h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">

@@ -2,7 +2,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="index.php" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="frontend/img/logo.png" alt=""> -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1 id="logo">AgriData Dynamics<span>.</span></h1>
         </a>
 
@@ -19,7 +19,7 @@
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle d-flex align-items-center text-dark col-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="frontend/img/avatar.png" alt="Dashboard" class="mr-1" style="max-height: 40px;">
+                            <img src="assets/img/avatar.png" alt="Dashboard" class="mr-1" style="max-height: 40px;">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                             <li>
@@ -92,7 +92,7 @@
                     </li>
                 <?php else : ?>
                     <li>
-                        <a href="login.php" class="nav-link d-flex align-items-center text-dark col-3"><img src="frontend/img/avatar.png" alt="Login" class="mr-1" style="max-height: 40px;">LogIn</a>
+                        <a href="login.php" class="nav-link d-flex align-items-center text-dark col-3"><img src="assets/img/avatar.png" alt="Login" class="mr-1" style="max-height: 40px;">LogIn</a>
                     </li>
                 <?php endif; ?>
             </ul>

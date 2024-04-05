@@ -15,8 +15,8 @@ include('login_check.php');
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="frontend/img/favicon.png" rel="icon">
-    <link href="frontend/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,15 +24,15 @@ include('login_check.php');
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="frontend/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="frontend/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="frontend/vendor/aos/aos.css" rel="stylesheet">
-    <link href="frontend/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="frontend/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="frontend/main.css" rel="stylesheet">
+    <link href="assets/main.css" rel="stylesheet">
 
 </head>
 
@@ -42,7 +42,7 @@ include('login_check.php');
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="frontend/img/logo.png" alt=""> -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1 id="logo">AgriData Dynamics<span>.</span></h1>
             </a>
 
@@ -59,7 +59,7 @@ include('login_check.php');
                     <?php if (isset($_SESSION['user_id'])) : ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle d-flex align-items-center text-dark col-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="frontend/img/avatar.png" alt="Dashboard" class="mr-1" style="max-height: 40px;">
+                                <img src="assets/img/avatar.png" alt="Dashboard" class="mr-1" style="max-height: 40px;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                                 <li>
@@ -132,7 +132,7 @@ include('login_check.php');
                         </li>
                     <?php else : ?>
                         <li>
-                            <a href="login.php" class="nav-link d-flex align-items-center text-dark col-3"><img src="frontend/img/avatar.png" alt="Login" class="mr-1" style="max-height: 40px;">LogIn</a>
+                            <a href="login.php" class="nav-link d-flex align-items-center text-dark col-3"><img src="assets/img/avatar.png" alt="Login" class="mr-1" style="max-height: 40px;">LogIn</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -160,11 +160,11 @@ include('login_check.php');
         </div>
 
         <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-            <div class="carousel-item active" style="background-image: url(frontend/img/hero/unsplash/7.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(frontend/img/hero/unsplash/6.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(frontend/img/hero/unsplash/8.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(frontend/img/hero/unsplash/10.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(frontend/img/hero/unsplash/12.jpg)"></div>
+            <div class="carousel-item active" style="background-image: url(assets/img/hero/unsplash/7.jpg)"></div>
+            <div class="carousel-item" style="background-image: url(assets/img/hero/unsplash/6.jpg)"></div>
+            <div class="carousel-item" style="background-image: url(assets/img/hero/unsplash/8.jpg)"></div>
+            <div class="carousel-item" style="background-image: url(assets/img/hero/unsplash/10.jpg)"></div>
+            <div class="carousel-item" style="background-image: url(assets/img/hero/unsplash/12.jpg)"></div>
 
             <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
@@ -193,7 +193,7 @@ include('login_check.php');
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
                         <div class="image">
                             <!-- Replace 'image_url' with the actual URL of the image representing Agridata Dynamics -->
-                            <img src="frontend/img/hero/unsplash/data_about.jpg" class="img-fluid" alt="About Us Image">
+                            <img src="assets/img/hero/unsplash/data_about.jpg" class="img-fluid" alt="About Us Image">
                         </div>
                     </div>
                 </div>

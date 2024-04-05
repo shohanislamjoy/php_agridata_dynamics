@@ -24,10 +24,10 @@ $result = $conn->query($sql);
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="frontend/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="frontend/css/adminlte.min.css">
-    <link rel="stylesheet" href="frontend/css/custom.css">
+    <link rel="stylesheet" href="assets/css/adminlte.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
 
@@ -56,7 +56,7 @@ $result = $conn->query($sql);
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-                        <img src="frontend/img/avatar.png" class='img-circle elevation-2' width="40" height="40" alt="">
+                        <img src="assets/img/avatar.png" class='img-circle elevation-2' width="40" height="40" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                         <h4 class="h4 mb-0"><strong><?php echo $user_name; ?></strong></h4>
@@ -82,7 +82,7 @@ $result = $conn->query($sql);
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="./index.php" class="brand-link">
-                <img src="frontend/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="assets/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AgriData Dynamics</span>
             </a>
 
@@ -194,13 +194,13 @@ $result = $conn->query($sql);
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
-    <script src="frontend/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="frontend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="frontend/js/adminlte.min.js"></script>
+    <script src="assets/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="frontend/js/demo.js"></script>
+    <script src="assets/js/demo.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         google.charts.load('current', {

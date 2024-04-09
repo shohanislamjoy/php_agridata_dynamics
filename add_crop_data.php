@@ -9,26 +9,24 @@ include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
-    $domain = $_POST['domain'];
-    $area_code = $_POST['area_code'];
+
     $area = $_POST['area'];
-    $item_code = $_POST['item_code'];
     $item = $_POST['item'];
-    $year_code = $_POST['year_code'];
-    $value = $_POST['value'];
+    $year = $_POST['year'];
+    $Production = $_POST['value'];
 
     // Validate data (optional, can be added for better security)
     // ... (e.g., check if domain length is within allowed limit)
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO yield (Domain, `Area Code`, Area, `Item Code`, Item, `Year Code`, Year, Value) 
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO crop_production ( Area,  Item, Year, Production) 
+   VALUES (?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssiii", $domain, $area_code, $area, $item_code, $item, $year_code, $year_code, $value);
+    $stmt->bind_param("ssii", $area, $item,  $year, $Production);
 
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Yield data added successfully!";
+        $successMessage = "Crop production data added successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -229,33 +227,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                     <form action="add_crop_data.php" method="POST">
-                        <div class="form-group">
-                            <label for="domain">Domain</label>
-                            <input type="text" name="domain" class="form-control" maxlength="5" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="area_code">Area Code</label>
-                            <input type="number" name="area_code" class="form-control" min="1" max="9" required>
-                        </div>
+
+
                         <div class="form-group">
                             <label for="area">Area</label>
                             <input type="text" name="area" class="form-control" maxlength="10" required>
                         </div>
-                        <div class="form-group">
-                            <label for="item_code">Item Code</label>
-                            <input type="number" name="item_code" class="form-control" min="100" max="999" required>
-                        </div>
+
                         <div class="form-group">
                             <label for="item">Item</label>
                             <input type="text" name="item" class="form-control" maxlength="14" required>
                         </div>
                         <div class="form-group">
-                            <label for="year_code">Year Code</label>
-                            <input type="number" name="year_code" class="form-control" min="2000" max="9999" required>
+                            <label for="year_code">Year</label>
+                            <input type="number" name="year" class="form-control" min="2000" max="2017" required>
                         </div>
                         <div class="form-group">
-                            <label for="value">Value</label>
-                            <input type="number" name="value" class="form-control" min="0" required>
+                            <label for="Production">Production</label>
+                            <input type="number" name="value" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2024 at 08:15 AM
+-- Generation Time: Apr 10, 2024 at 01:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,10 +53,102 @@ INSERT INTO `contact` (`id`, `name`, `email`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crop_production`
+-- Table structure for table `fertilizer_data`
 --
 
-CREATE TABLE `crop_production` (
+CREATE TABLE `fertilizer_data` (
+  `df_id` int(11) NOT NULL,
+  `division` varchar(10) DEFAULT NULL,
+  `year` int(4) DEFAULT NULL,
+  `urea` int(6) DEFAULT NULL,
+  `tsp` int(5) DEFAULT NULL,
+  `mp` int(5) DEFAULT NULL,
+  `dap` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `fertilizer_data`
+--
+
+INSERT INTO `fertilizer_data` (`df_id`, `division`, `year`, `urea`, `tsp`, `mp`, `dap`) VALUES
+(1, 'Barisal', 2008, 30273, 5068, 5113, 3031),
+(2, 'Barisal', 2009, 30266, 5122, 5277, 3114),
+(3, 'Barisal', 2010, 30464, 5044, 5147, 2864),
+(4, 'Barisal', 2011, 30205, 5129, 5488, 3244),
+(5, 'Barisal', 2012, 30724, 5200, 5840, 3804),
+(6, 'Barisal', 2013, 30294, 5094, 5155, 3426),
+(7, 'Barisal', 2014, 30914, 5398, 5552, 3582),
+(8, 'Barisal', 2015, 30530, 5391, 5314, 3939),
+(9, 'Barisal', 2016, 31056, 5227, 5836, 3450),
+(10, 'Barisal', 2017, 30691, 5378, 5062, 3299),
+(11, 'Chittagong', 2008, 91562, 19022, 20143, 8809),
+(12, 'Chittagong', 2009, 88769, 17126, 18791, 9171),
+(13, 'Chittagong', 2010, 91923, 18601, 20775, 9526),
+(14, 'Chittagong', 2011, 93730, 19362, 17605, 9765),
+(15, 'Chittagong', 2012, 91285, 18985, 19294, 9068),
+(16, 'Chittagong', 2013, 89379, 20598, 18579, 8782),
+(17, 'Chittagong', 2014, 91374, 19201, 20293, 9153),
+(18, 'Chittagong', 2015, 88951, 20126, 19254, 9795),
+(19, 'Chittagong', 2016, 93695, 20181, 18682, 10088),
+(20, 'Chittagong', 2017, 93368, 20321, 18243, 9511),
+(21, 'Dhaka', 2008, 25967, 8262, 4808, 1573),
+(22, 'Dhaka', 2009, 29300, 8041, 5396, 1578),
+(23, 'Dhaka', 2010, 27967, 8675, 4822, 1688),
+(24, 'Dhaka', 2011, 36991, 9386, 5553, 1628),
+(25, 'Dhaka', 2012, 32966, 8166, 5498, 1925),
+(26, 'Dhaka', 2013, 30332, 9188, 5490, 1941),
+(27, 'Dhaka', 2014, 35321, 9233, 5369, 1926),
+(28, 'Dhaka', 2015, 30750, 9544, 5684, 1586),
+(29, 'Dhaka', 2016, 36712, 9094, 5705, 1987),
+(30, 'Dhaka', 2017, 37382, 8782, 5410, 1903),
+(31, 'Khulna', 2008, 16992, 7954, 7026, 443),
+(32, 'Khulna', 2009, 16920, 7834, 6936, 532),
+(33, 'Khulna', 2010, 17014, 8075, 7209, 628),
+(34, 'Khulna', 2011, 17384, 8313, 7374, 602),
+(35, 'Khulna', 2012, 17149, 8408, 7510, 732),
+(36, 'Khulna', 2013, 17610, 8707, 7653, 598),
+(37, 'Khulna', 2014, 17220, 8897, 8058, 657),
+(38, 'Khulna', 2015, 17964, 9125, 7798, 711),
+(39, 'Khulna', 2016, 18221, 8356, 7730, 566),
+(40, 'Khulna', 2017, 17835, 8771, 8100, 564),
+(41, 'Rajshahi', 2008, 120279, 34007, 47121, 28723),
+(42, 'Rajshahi', 2009, 120936, 42363, 42428, 30791),
+(43, 'Rajshahi', 2010, 119974, 32347, 49366, 29182),
+(44, 'Rajshahi', 2011, 120944, 41236, 44949, 30009),
+(45, 'Rajshahi', 2012, 118950, 47006, 52921, 31153),
+(46, 'Rajshahi', 2013, 123953, 45664, 43889, 30172),
+(47, 'Rajshahi', 2014, 111792, 45750, 40792, 31212),
+(48, 'Rajshahi', 2015, 116294, 48421, 51950, 30842),
+(49, 'Rajshahi', 2016, 124574, 48162, 45582, 31785),
+(50, 'Rajshahi', 2017, 130393, 49248, 53832, 30994),
+(51, 'Rangpur', 2008, 29264, 9225, 9057, 5721),
+(52, 'Rangpur', 2009, 29059, 9658, 9007, 5604),
+(53, 'Rangpur', 2010, 29295, 9435, 9140, 5967),
+(54, 'Rangpur', 2011, 29457, 9866, 9041, 5831),
+(55, 'Rangpur', 2012, 29105, 9857, 9177, 5927),
+(56, 'Rangpur', 2013, 29301, 9704, 9270, 5990),
+(57, 'Rangpur', 2014, 29564, 9578, 9139, 5970),
+(58, 'Rangpur', 2015, 29543, 9626, 9453, 5865),
+(59, 'Rangpur', 2016, 29159, 9416, 9491, 5837),
+(60, 'Rangpur', 2017, 29558, 9880, 9170, 5849),
+(61, 'Sylhet', 2008, 48522, 13993, 9646, 6030),
+(62, 'Sylhet', 2009, 55839, 10939, 10321, 3647),
+(63, 'Sylhet', 2010, 69834, 14890, 18374, 5455),
+(64, 'Sylhet', 2011, 65338, 14518, 11410, 6349),
+(65, 'Sylhet', 2012, 66013, 20332, 16690, 6860),
+(66, 'Sylhet', 2013, 68183, 13092, 14431, 7698),
+(67, 'Sylhet', 2014, 53602, 11112, 14965, 6596),
+(68, 'Sylhet', 2015, 64666, 13232, 16554, 6746),
+(69, 'Sylhet', 2016, 70372, 19507, 17138, 8170),
+(70, 'Sylhet', 2017, 61581, 14561, 21016, 6921);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `production_data`
+--
+
+CREATE TABLE `production_data` (
   `production_id` int(11) NOT NULL,
   `Area` varchar(10) DEFAULT NULL,
   `Item` varchar(10) DEFAULT NULL,
@@ -65,10 +157,10 @@ CREATE TABLE `crop_production` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `crop_production`
+-- Dumping data for table `production_data`
 --
 
-INSERT INTO `crop_production` (`production_id`, `Area`, `Item`, `Year`, `Production`) VALUES
+INSERT INTO `production_data` (`production_id`, `Area`, `Item`, `Year`, `Production`) VALUES
 (1, 'Barisal', 'Maize', 2000, 36186),
 (2, 'Barisal', 'Rice', 2000, 10143),
 (3, 'Barisal', 'Potato', 2000, 13052),
@@ -714,138 +806,26 @@ INSERT INTO `crop_production` (`production_id`, `Area`, `Item`, `Year`, `Product
 (643, 'Sylhet', 'Sorghum', 2016, 44976),
 (644, 'Sylhet', 'Soybeans', 2016, 30146),
 (645, 'Sylhet', 'Sweet Rice', 2016, 145614),
-(646, 'Sylhet', 'Wheat', 2016, 32966);
+(646, 'Sylhet', 'Wheat', 2016, 32966),
+(656, 'Dhaka', 'Rice', 2017, 55555555);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_fertilizer`
+-- Table structure for table `rainfall_data`
 --
 
-CREATE TABLE `data_fertilizer` (
-  `df_id` int(11) NOT NULL,
-  `District` varchar(10) DEFAULT NULL,
-  `year` int(4) DEFAULT NULL,
-  `urea` int(6) DEFAULT NULL,
-  `tsp` int(5) DEFAULT NULL,
-  `mp` int(5) DEFAULT NULL,
-  `DAP` int(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `data_fertilizer`
---
-
-INSERT INTO `data_fertilizer` (`df_id`, `District`, `year`, `urea`, `tsp`, `mp`, `DAP`) VALUES
-(1, 'Barisal', 2008, 30273, 5068, 5113, 3031),
-(2, 'Barisal', 2009, 30266, 5122, 5277, 3114),
-(3, 'Barisal', 2010, 30464, 5044, 5147, 2864),
-(4, 'Barisal', 2011, 30205, 5129, 5488, 3244),
-(5, 'Barisal', 2012, 30724, 5200, 5840, 3804),
-(6, 'Barisal', 2013, 30294, 5094, 5155, 3426),
-(7, 'Barisal', 2014, 30914, 5398, 5552, 3582),
-(8, 'Barisal', 2015, 30530, 5391, 5314, 3939),
-(9, 'Barisal', 2016, 31056, 5227, 5836, 3450),
-(10, 'Barisal', 2017, 30691, 5378, 5062, 3299),
-(11, 'Chittagong', 2008, 91562, 19022, 20143, 8809),
-(12, 'Chittagong', 2009, 88769, 17126, 18791, 9171),
-(13, 'Chittagong', 2010, 91923, 18601, 20775, 9526),
-(14, 'Chittagong', 2011, 93730, 19362, 17605, 9765),
-(15, 'Chittagong', 2012, 91285, 18985, 19294, 9068),
-(16, 'Chittagong', 2013, 89379, 20598, 18579, 8782),
-(17, 'Chittagong', 2014, 91374, 19201, 20293, 9153),
-(18, 'Chittagong', 2015, 88951, 20126, 19254, 9795),
-(19, 'Chittagong', 2016, 93695, 20181, 18682, 10088),
-(20, 'Chittagong', 2017, 93368, 20321, 18243, 9511),
-(21, 'Dhaka', 2008, 25967, 8262, 4808, 1573),
-(22, 'Dhaka', 2009, 29300, 8041, 5396, 1578),
-(23, 'Dhaka', 2010, 27967, 8675, 4822, 1688),
-(24, 'Dhaka', 2011, 36991, 9386, 5553, 1628),
-(25, 'Dhaka', 2012, 32966, 8166, 5498, 1925),
-(26, 'Dhaka', 2013, 30332, 9188, 5490, 1941),
-(27, 'Dhaka', 2014, 35321, 9233, 5369, 1926),
-(28, 'Dhaka', 2015, 30750, 9544, 5684, 1586),
-(29, 'Dhaka', 2016, 36712, 9094, 5705, 1987),
-(30, 'Dhaka', 2017, 37382, 8782, 5410, 1903),
-(31, 'Khulna', 2008, 16992, 7954, 7026, 443),
-(32, 'Khulna', 2009, 16920, 7834, 6936, 532),
-(33, 'Khulna', 2010, 17014, 8075, 7209, 628),
-(34, 'Khulna', 2011, 17384, 8313, 7374, 602),
-(35, 'Khulna', 2012, 17149, 8408, 7510, 732),
-(36, 'Khulna', 2013, 17610, 8707, 7653, 598),
-(37, 'Khulna', 2014, 17220, 8897, 8058, 657),
-(38, 'Khulna', 2015, 17964, 9125, 7798, 711),
-(39, 'Khulna', 2016, 18221, 8356, 7730, 566),
-(40, 'Khulna', 2017, 17835, 8771, 8100, 564),
-(41, 'Rajshahi', 2008, 120279, 34007, 47121, 28723),
-(42, 'Rajshahi', 2009, 120936, 42363, 42428, 30791),
-(43, 'Rajshahi', 2010, 119974, 32347, 49366, 29182),
-(44, 'Rajshahi', 2011, 120944, 41236, 44949, 30009),
-(45, 'Rajshahi', 2012, 118950, 47006, 52921, 31153),
-(46, 'Rajshahi', 2013, 123953, 45664, 43889, 30172),
-(47, 'Rajshahi', 2014, 111792, 45750, 40792, 31212),
-(48, 'Rajshahi', 2015, 116294, 48421, 51950, 30842),
-(49, 'Rajshahi', 2016, 124574, 48162, 45582, 31785),
-(50, 'Rajshahi', 2017, 130393, 49248, 53832, 30994),
-(51, 'Rangpur', 2008, 29264, 9225, 9057, 5721),
-(52, 'Rangpur', 2009, 29059, 9658, 9007, 5604),
-(53, 'Rangpur', 2010, 29295, 9435, 9140, 5967),
-(54, 'Rangpur', 2011, 29457, 9866, 9041, 5831),
-(55, 'Rangpur', 2012, 29105, 9857, 9177, 5927),
-(56, 'Rangpur', 2013, 29301, 9704, 9270, 5990),
-(57, 'Rangpur', 2014, 29564, 9578, 9139, 5970),
-(58, 'Rangpur', 2015, 29543, 9626, 9453, 5865),
-(59, 'Rangpur', 2016, 29159, 9416, 9491, 5837),
-(60, 'Rangpur', 2017, 29558, 9880, 9170, 5849),
-(61, 'Sylhet', 2008, 48522, 13993, 9646, 6030),
-(62, 'Sylhet', 2009, 55839, 10939, 10321, 3647),
-(63, 'Sylhet', 2010, 69834, 14890, 18374, 5455),
-(64, 'Sylhet', 2011, 65338, 14518, 11410, 6349),
-(65, 'Sylhet', 2012, 66013, 20332, 16690, 6860),
-(66, 'Sylhet', 2013, 68183, 13092, 14431, 7698),
-(67, 'Sylhet', 2014, 53602, 11112, 14965, 6596),
-(68, 'Sylhet', 2015, 64666, 13232, 16554, 6746),
-(69, 'Sylhet', 2016, 70372, 19507, 17138, 8170),
-(70, 'Sylhet', 2017, 61581, 14561, 21016, 6921);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
-
-CREATE TABLE `projects` (
-  `id` int(11) NOT NULL,
-  `project_name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image_url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `projects`
---
-
-INSERT INTO `projects` (`id`, `project_name`, `description`, `image_url`) VALUES
-(1, 'haklshdklas', 'kasfksah', 'frontend/img/project_pictures/Someday.jpg'),
-(2, 'ihkfhasdf', 'asdasd', 'frontend/img/project_pictures/icon_1.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rainfall_edited`
---
-
-CREATE TABLE `rainfall_edited` (
+CREATE TABLE `rainfall_data` (
   ` Area` varchar(10) DEFAULT NULL,
   `Year` int(4) DEFAULT NULL,
   `average_rain_fall_mm_per_year` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `rainfall_edited`
+-- Dumping data for table `rainfall_data`
 --
 
-INSERT INTO `rainfall_edited` (` Area`, `Year`, `average_rain_fall_mm_per_year`) VALUES
+INSERT INTO `rainfall_data` (` Area`, `Year`, `average_rain_fall_mm_per_year`) VALUES
 ('Dhaka', 2000, 327),
 ('Dhaka', 2001, 327),
 ('Dhaka', 2002, 327),
@@ -1028,9 +1008,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`) VALUES
 (1, 'Shohan', 'shohan@gmail.com', '76464358635163164', '$2y$10$Xx3P42ClTL3VdFfVOSAIQ..Di5FNHbK8JcY8nX7GV6OrLn5uRpTUK'),
-(2, 'Admin', 'admin@gmail.com', '6461234464', '$2y$10$En73U9pX74MjHmUIXY7UN.BvuW0eOKYYxx27E25KZzeBZp2h7v5v6'),
-(3, 'asd', 'adas@gmail.com', '5456464', '$2y$10$4MEm161Lbb4smfElxiwktu9h7GGbHRQueWsmZ8HNQKiQEUNpiVgj2'),
-(5, 'asd', 'asdasd@gmail.com', '6749864653465', '$2y$10$td64cECMB8RzPwptiwkziuu2zhsdylsSVyhafgvoRLSa8BPwjtoiG');
+(2, 'Admin', 'admin@gmail.com', '6461234464', '$2y$10$En73U9pX74MjHmUIXY7UN.BvuW0eOKYYxx27E25KZzeBZp2h7v5v6');
 
 -- --------------------------------------------------------
 
@@ -1712,22 +1690,16 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `crop_production`
+-- Indexes for table `fertilizer_data`
 --
-ALTER TABLE `crop_production`
-  ADD PRIMARY KEY (`production_id`);
-
---
--- Indexes for table `data_fertilizer`
---
-ALTER TABLE `data_fertilizer`
+ALTER TABLE `fertilizer_data`
   ADD PRIMARY KEY (`df_id`);
 
 --
--- Indexes for table `projects`
+-- Indexes for table `production_data`
 --
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `production_data`
+  ADD PRIMARY KEY (`production_id`);
 
 --
 -- Indexes for table `testimonials`
@@ -1753,22 +1725,16 @@ ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `crop_production`
+-- AUTO_INCREMENT for table `fertilizer_data`
 --
-ALTER TABLE `crop_production`
-  MODIFY `production_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=654;
-
---
--- AUTO_INCREMENT for table `data_fertilizer`
---
-ALTER TABLE `data_fertilizer`
+ALTER TABLE `fertilizer_data`
   MODIFY `df_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `projects`
+-- AUTO_INCREMENT for table `production_data`
 --
-ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `production_data`
+  MODIFY `production_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=659;
 
 --
 -- AUTO_INCREMENT for table `testimonials`

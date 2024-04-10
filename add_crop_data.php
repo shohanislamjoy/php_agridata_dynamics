@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ... (e.g., check if domain length is within allowed limit)
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO crop_production ( Area,  Item, Year, Production) 
+    $sql = "INSERT INTO production_data ( Area,  Item, Year, Production) 
    VALUES (?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
@@ -183,6 +183,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p>Add Crop Data</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="add_fertilizer_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Fertilizer Data</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="show_users_admin.php" class="nav-link">
@@ -231,8 +237,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="form-group">
                             <label for="area">Area</label>
-                            <input type="text" name="area" class="form-control" maxlength="10" required>
+                            <select name="area" class="form-control" required>
+                                <option value="">Select Division</option>
+                                <?php
+                                // Assuming you have an array of divisions named $divisions
+                                $divisions = array("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet");
+
+                                // Loop through the divisions array to generate options
+                                foreach ($divisions as $division) {
+                                    echo "<option value='$division'>$division</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
+
 
                         <div class="form-group">
                             <label for="item">Item</label>
@@ -240,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="form-group">
                             <label for="year_code">Year</label>
-                            <input type="number" name="year" class="form-control" min="2000" max="2017" required>
+                            <input type="number" name="year" class="form-control" min="2000" max="2023" required>
                         </div>
                         <div class="form-group">
                             <label for="Production">Production</label>

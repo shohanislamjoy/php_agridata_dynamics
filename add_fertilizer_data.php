@@ -1,10 +1,42 @@
 <?php
 include('login_check.php');
+
 if (!$userLoggedIn) {
     header("location:login.php");
     exit();
 }
+
+include('connection.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form data
+    $division = $_POST['division'];
+    $year = $_POST['year'];
+    $urea = $_POST['urea'];
+    $tsp = $_POST['tsp'];
+    $mp = $_POST['mp'];
+    $dap = $_POST['dap'];
+
+    // Prepare SQL statement (using prepared statements for security)
+    $sql = "INSERT INTO fertilizer_data (division, Year, urea, tsp, mp, dap) VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("siiiii", $division, $year, $urea, $tsp, $mp, $dap);
+
+    if ($stmt->execute() === TRUE) {
+        $successMessage = "Fertilizer data added successfully!";
+    } else {
+        $errorMessage = "Error: " . $conn->error;
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+}
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +44,7 @@ if (!$userLoggedIn) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administrative Panel</title>
+    <title>Administrative Panel:: projects</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -20,8 +52,59 @@ if (!$userLoggedIn) {
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/css/adminlte.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        form {
+            max-width: 600px;
+            width: 100%;
+            margin: 3% auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="number"],
+        form select,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form select {
+            height: 40px;
+        }
+
+        form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            /* Center the button */
+        }
+    </style>
+
+
 
 </head>
+
+
 
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
@@ -131,91 +214,94 @@ if (!$userLoggedIn) {
         </aside>
 
 
-
-
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Main content -->
-            <section class="content">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Add Fertilizer Data</h1>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="container mt-5">
-                    <h2 class="mb-4">User Management</h2>
-                    <?php
-                    // Include your database connection file and any necessary configurations
-                    include 'connection.php';
 
-                    // Function to delete user
-                    function deleteUser($conn, $id)
-                    {
-                        $sql = "DELETE FROM users WHERE id=?";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("i", $id);
-                        $stmt->execute();
-                        $stmt->close();
-                        return true;
-                    }
 
-                    // Check if form is submitted for deletion
-                    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_id"])) {
-                        $delete_id = $_POST["delete_id"];
-                        if (deleteUser($conn, $delete_id)) {
-                            echo '<div class="alert alert-success" role="alert">User deleted successfully!</div>';
-                        } else {
-                            echo '<div class="alert alert-danger" role="alert">Error deleting user!</div>';
-                        }
-                    }
+                    <form action="add_fertilizer_data.php" method="POST">
 
-                    // Fetch all users from the database
-                    $sql = "SELECT * FROM users";
-                    $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                    ?>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($row = $result->fetch_assoc()) { ?>
-                                    <tr>
-                                        <td><?php echo $row["name"]; ?></td>
-                                        <td><?php echo $row["email"]; ?></td>
-                                        <td><?php echo $row["phone"]; ?></td>
-                                        <td>
-                                            <!-- Edit Button -->
-                                            <a href="edit_user.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <div class="form-group">
+                            <label for="division">Division</label>
+                            <select name="division" class="form-control" required>
+                                <option value="">Select Division</option>
+                                <?php
+                                // Assuming you have an array of divisions named $divisions
+                                $divisions = array("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet");
 
-                                            <!-- Delete Button -->
-                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="display: inline;">
-                                                <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    <?php } else { ?>
-                        <p>No users found.</p>
-                    <?php } ?>
+                                // Loop through the divisions array to generate options
+                                foreach ($divisions as $division) {
+                                    echo "<option value='$division'>$division</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="item">Item</label>
+                            <input type="text" name="item" class="form-control" maxlength="14" required>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label for="year_code">Year</label>
+                            <input type="number" name="year" class="form-control" min="2000" max="2023" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="urea">Urea used in Tons</label>
+                            <input type="number" name="urea" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tsp">Triple superphosphate(TSP) used in Tons</label>
+                            <input type="number" name="tsp" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mp">Muriate of Potash(MP) used in Tons</label>
+                            <input type="number" name="mp" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dap">Diammonium phosphate(DAP) used in Tons</label>
+                            <input type="number" name="dap" class="form-control" required>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <?php if (isset($successMessage)) : ?>
+                        <div id="success-message" class="alert alert-success" role="alert">
+                            <?php echo $successMessage; ?>
+                        </div>
+                    <?php elseif (isset($errorMessage)) : ?>
+                        <div id="error-message" class="alert alert-danger" role="alert">
+                            <?php echo $errorMessage; ?>
+                        </div>
+                    <?php endif; ?>
+
+
+
                 </div>
 
 
+            </section>
+            <!-- /.content -->
         </div>
-
-        </section>
-        <!-- /.content -->
-
         <!-- /.content-wrapper -->
         <footer class="main-footer">
 
-            <strong>Copyright &copy; AgriData DynamicsAll rights reserved.
+            <strong>Copyright &copy; AgriData Dynamics All rights reserved.
         </footer>
+
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
@@ -226,11 +312,31 @@ if (!$userLoggedIn) {
     <script src="assets/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="assets/js/demo.js"></script>
+
+
+
     <script>
         document.getElementById('logout-button').addEventListener('click', function() {
             // Redirect to the logout page
             window.location.href = 'logout.php'; // Change 'logout.php' to the actual path of your logout script
         });
+
+        function hideMessages() {
+            setTimeout(function() {
+                var successMessage = document.getElementById('success-message');
+                var errorMessage = document.getElementById('error-message');
+
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+            }, 1000); // 1000 milliseconds = 1 second
+        }
+
+        // Call the hideMessages function when the page loads
+        document.addEventListener('DOMContentLoaded', hideMessages);
     </script>
 
 </body>

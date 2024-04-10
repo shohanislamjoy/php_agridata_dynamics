@@ -4,7 +4,7 @@ include('login_check.php');
 include('connection.php');
 
 // Fetch data from the database and calculate total production per area
-$sql = "SELECT Area, SUM(Value) AS TotalProduction FROM `yield` GROUP BY Area";
+$sql = "SELECT Area, SUM(production) AS TotalProduction FROM `production_data` GROUP BY Area";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts

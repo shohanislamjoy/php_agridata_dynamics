@@ -5,7 +5,7 @@ include('login_check.php');
 include('connection.php');
 
 // Fetch data from the database and calculate average yield per year for all items
-$sql = "SELECT Year, Item, AVG(Value) AS AverageValue FROM `yield` GROUP BY Year, Item ORDER BY Year, Item";
+$sql = "SELECT Year, Item, AVG(production) AS AverageValue FROM `production_data` GROUP BY Year, Item ORDER BY Year, Item";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts

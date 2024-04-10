@@ -5,7 +5,7 @@ include('login_check.php');
 include('connection.php');
 
 // Fetching data from the database and calculate Total yield per year
-$sql = "SELECT Year, SUM(Value) AS TotalValue FROM `yield` WHERE Item = 'Wheat' GROUP BY Year ORDER BY Year";
+$sql = "SELECT Year, SUM(production) AS TotalValue FROM `production_data` WHERE Item = 'Wheat' GROUP BY Year ORDER BY Year";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts

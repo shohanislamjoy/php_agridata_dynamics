@@ -394,7 +394,7 @@ Rajshahi,Maize,2000,23178
 Rajshahi,Rice,2000,87349
 Rajshahi,Wheat,2000,16679
 Rajshahi,Maize,2001,37913
-Rajshahi,Rice,2001,94619
+Rajshahi,Rice,2001,114619
 Rajshahi,Wheat,2001,22263
 Rajshahi,Maize,2002,37380
 Rajshahi,Rice,2002,122814
@@ -607,7 +607,7 @@ Sylhet,Sweet Rice,2011,148754
 Sylhet,Wheat,2011,35063
 Sylhet,Cassava,2012,100000
 Sylhet,Maize,2012,57346
-Sylhet,Rice,2012,127821
+Sylhet,Rice,2012,287821
 Sylhet,Potato,2012,66617
 Sylhet,Sorghum,2012,46534
 Sylhet,Soybeans,2012,22814
@@ -615,7 +615,7 @@ Sylhet,Sweet Rice,2012,148126
 Sylhet,Wheat,2012,32199
 Sylhet,Cassava,2013,99459
 Sylhet,Maize,2013,66037
-Sylhet,Rice,2013,98984
+Sylhet,Rice,2013,288984
 Sylhet,Potato,2013,67187
 Sylhet,Sorghum,2013,40852
 Sylhet,Soybeans,2013,25391
@@ -623,7 +623,7 @@ Sylhet,Sweet Rice,2013,147498
 Sylhet,Wheat,2013,26581
 Sylhet,Cassava,2014,99804
 Sylhet,Maize,2014,68409
-Sylhet,Rice,2014,110148
+Sylhet,Rice,2014,290148
 Sylhet,Potato,2014,65042
 Sylhet,Sorghum,2014,44009
 Sylhet,Soybeans,2014,27735
@@ -631,7 +631,7 @@ Sylhet,Sweet Rice,2014,146870
 Sylhet,Wheat,2014,28110
 Sylhet,Cassava,2015,100147
 Sylhet,Maize,2015,73090
-Sylhet,Rice,2015,101312
+Sylhet,Rice,2015,291312
 Sylhet,Potato,2015,66989
 Sylhet,Sorghum,2015,47043
 Sylhet,Soybeans,2015,31755
@@ -639,9 +639,9 @@ Sylhet,Sweet Rice,2015,146242
 Sylhet,Wheat,2015,28731
 Sylhet,Cassava,2016,100127
 Sylhet,Maize,2016,74427
-Sylhet,Rice,2016,122476
+Sylhet,Rice,2016,292476
 Sylhet,Potato,2016,67632
 Sylhet,Sorghum,2016,44976
 Sylhet,Soybeans,2016,30146
-Sylhet,Sweet Rice,2016,105614
+Sylhet,Sweet Rice,2016,145614
 Sylhet,Wheat,2016,32966

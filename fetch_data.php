@@ -3,13 +3,13 @@
 include('connection.php');
 
 // Default SQL query to fetch all data
-$sql = "SELECT Area, SUM(Value) AS TotalProduction FROM `yield` GROUP BY Area";
+$sql = "SELECT Area, SUM(production) AS TotalProduction FROM `production_data` GROUP BY Area";
 
 // Check if a specific year is provided in the request
 if (isset($_GET['year']) && !empty($_GET['year']) && $_GET['year'] !== 'all') {
     $year = $_GET['year'];
     // Modify the SQL query to filter by the selected year
-    $sql = "SELECT Area, SUM(Value) AS TotalProduction FROM `yield` WHERE Year = $year GROUP BY Area";
+    $sql = "SELECT Area, SUM(production) AS TotalProduction FROM `production_data` WHERE Year = $year GROUP BY Area";
 }
 
 $result = $conn->query($sql);

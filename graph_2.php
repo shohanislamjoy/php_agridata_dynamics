@@ -5,7 +5,7 @@ include('login_check.php');
 include('connection.php');
 
 // Fetch data from the database and calculate total yield per item
-$sql = "SELECT Item, SUM(Value) AS TotalValue FROM `yield` GROUP BY Item ";
+$sql = "SELECT Item, SUM(production) AS TotalValue FROM `production_data` GROUP BY Item ";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts

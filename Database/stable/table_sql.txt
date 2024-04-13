@@ -1,0 +1,65 @@
+CREATE TABLE `crop` (
+  `corp_id` int(5) NOT NULL,
+  `crop_name` varchar(6) DEFAULT NULL,
+  `time` varchar(7) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE `division` (
+  `div_id` int(4) NOT NULL,
+  `division_name` varchar(10) DEFAULT NULL,
+  `area` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE `fertilizer` (
+  `fertilizer_id` int(11) NOT NULL,
+  `Area` varchar(10) DEFAULT NULL,
+  `crop_id` int(5) DEFAULT NULL,
+  `Year` int(4) DEFAULT NULL,
+  `urea` int(5) DEFAULT NULL,
+  `tsp` int(5) DEFAULT NULL,
+  `mp` int(5) DEFAULT NULL,
+  `dap` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `field` (
+  `field_id` int(5) NOT NULL,
+  `div_id` int(4) DEFAULT NULL,
+  `soil_id` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+CREATE TABLE `production_data` (
+  `p_id` int(5) NOT NULL,
+  `Year` int(4) DEFAULT NULL,
+  `production` int(5) DEFAULT NULL,
+  `field_id` int(5) DEFAULT NULL,
+  `crop_id` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+
+CREATE TABLE `rainfall` (
+  `r_id` int(5) NOT NULL,
+  `Area` varchar(10) DEFAULT NULL,
+  `Year` int(4) DEFAULT NULL,
+  `average_rain_fall_mm_per_year` int(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE `sensor` (
+  `Sensor ID` int(5) NOT NULL,
+  `District` varchar(10) DEFAULT NULL,
+  `year` int(4) DEFAULT NULL,
+  `humidity` decimal(3,1) DEFAULT NULL,
+  `max_temperature` decimal(4,2) DEFAULT NULL,
+  `min_temperature` decimal(4,2) DEFAULT NULL,
+  `Installation_Date` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE `soil_type` (
+  `soil_id` int(5) NOT NULL,
+  `type` varchar(18) DEFAULT NULL,
+  `area` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+

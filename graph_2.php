@@ -5,7 +5,11 @@ include('login_check.php');
 include('connection.php');
 
 // Fetch data from the database and calculate total yield per item
-$sql = "SELECT Item, SUM(production) AS TotalValue FROM `production_data` GROUP BY Item ";
+$sql = "SELECT c.crop_name AS Item, SUM(pd.production) AS TotalValue 
+        FROM production_data pd
+        JOIN crop c ON pd.crop_id = c.corp_id
+        GROUP BY c.crop_name";
+
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts

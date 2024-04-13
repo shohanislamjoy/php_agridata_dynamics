@@ -4,17 +4,22 @@ include('login_check.php');
 include('connection.php');
 
 // Fetch data from the database and calculate total production per area
-$sql = "SELECT Area, SUM(production) AS TotalProduction FROM `production_data` GROUP BY Area";
+$sql = "SELECT d.division_name, SUM(pd.production) AS TotalProduction
+FROM production_data pd
+JOIN field f ON pd.field_id = f.field_id
+JOIN division d ON f.div_id = d.div_id
+GROUP BY d.division_name;
+";
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts
 $data = array();
-$data[] = ['Area', 'Total Production', ['role' => 'style']];
+$data[] = ['division_name', 'TotalProduction', ['role' => 'style']];
 $colors = ['#3366cc', '#dc3912', '#ff9900', '#109618', '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395'];
 $colorIndex = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $area = (string)$row['Area'];
+        $area = (string)$row['division_name'];
         $totalProduction = (float)$row['TotalProduction'];
         $color = $colors[$colorIndex % count($colors)]; // Get color from the array, loop through if needed
         $data[] = [$area, $totalProduction, $color];
@@ -22,8 +27,10 @@ if ($result->num_rows > 0) {
     }
 }
 
+
 // Convert data to Google Charts DataTable format
 $dataJSON = json_encode($data);
+echo $dataJSON;
 
 // Close database connection
 $conn->close();

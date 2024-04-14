@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <img src="assets/img/farm_1.png" alt="" class="img-fluid">
+                    <img src="./assets/img/farm_1.png" alt="" class="img-fluid">
                 </div>
                 <!-- End footer links column-->
                 <div class="col-lg-4 col-md-6">

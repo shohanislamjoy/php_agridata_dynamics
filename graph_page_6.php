@@ -1,33 +1,43 @@
 <?php
-include('login_check.php');
-
 // Database connection
 include('connection.php');
 
-// Fetch data from the database and calculate total yield per item
-$sql = "SELECT c.crop_name AS Item, SUM(pd.production) AS TotalValue 
-        FROM production_data pd
-        JOIN crop c ON pd.crop_id = c.corp_id
-        GROUP BY c.crop_name";
-
+// Fetch crop names
+$sql = "SELECT DISTINCT c.crop_name FROM crop c";
 $result = $conn->query($sql);
 
-// Prepare data for Google Charts
-$data = array();
-$data[] = ['Item', 'Total Value', ['role' => 'style']]; // Add an additional column for style
+// Initialize arrays to hold crop names and fertilizers
+$crops = array();
+$fertilizers = array('urea', 'tsp', 'mp', 'dap');
+
+// Fetch fertilizer data for each crop
 if ($result->num_rows > 0) {
-    $colors = ['#3366cc', '#dc3912', '#ff9900', '#109618', '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395', '#994499', '#22aa99', '#aaaa11', '#6633cc', '#e67300', '#8b0707', '#651067', '#329262', '#5574a6', '#3b3eac']; // Define colors for each item
-    $i = 0;
     while ($row = $result->fetch_assoc()) {
-        $data[] = [
-            (string)$row['Item'],
-            (float)$row['TotalValue'],
-            $colors[$i % count($colors)] // Assign a color to each item
-        ];
-        $i++;
+        $cropName = $row['crop_name'];
+        $fertilizerData = array();
+        foreach ($fertilizers as $fertilizer) {
+            $fertilizerData[$fertilizer] = 0;
+        }
+
+        // Fetch fertilizer data for the current crop
+        $sqlFertilizer = "SELECT urea, tsp, mp, dap
+                          FROM fertilizer
+                          WHERE crop_id = (SELECT corp_id FROM crop WHERE crop_name = '$cropName')";
+        $resultFertilizer = $conn->query($sqlFertilizer);
+        if ($resultFertilizer->num_rows > 0) {
+            // Sum up fertilizer data for the current crop
+            while ($rowFertilizer = $resultFertilizer->fetch_assoc()) {
+                foreach ($fertilizers as $fertilizer) {
+                    // Divide the value by 1000 to adjust
+                    $fertilizerData[$fertilizer] += (int)$rowFertilizer[$fertilizer] / 1000;
+                }
+            }
+        }
+
+        // Add crop and its fertilizer data to the crops array
+        $crops[$cropName] = $fertilizerData;
     }
 }
-$dataJSON = json_encode($data); // Store JSON data in a variable
 
 // Close database connection
 $conn->close();
@@ -67,6 +77,51 @@ $conn->close();
 
     <!-- Template Main CSS File -->
     <link href="assets/main.css" rel="stylesheet">
+    <!-- Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {
+            var data = google.visualization.arrayToDataTable([
+                ['Crop', 'Urea', 'TSP', 'MP', 'DAP'],
+                <?php
+                foreach ($crops as $cropName => $fertilizerData) {
+                    echo "['$cropName',";
+                    echo $fertilizerData['urea'] . ",";
+                    echo $fertilizerData['tsp'] . ",";
+                    echo $fertilizerData['mp'] . ",";
+                    echo $fertilizerData['dap'] . "],";
+                }
+                ?>
+            ]);
+
+            var options = {
+                title: 'Fertilizers for Each Crop in 100 Acre',
+                hAxis: {
+                    title: 'Crop'
+                },
+                vAxis: {
+                    title: 'Amount in KG',
+                    textStyle: {
+                        bold: true
+                    }
+                },
+                seriesType: 'bars',
+                series: {
+                    4: {
+                        type: 'line'
+                    }
+                }
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
 
 
 </head>
@@ -98,9 +153,9 @@ $conn->close();
 
         <!-- Analysis Section -->
         <section class="analysis-section">
-            <div class="container">
+            <div class="container text-center">
                 <!-- Graph -->
-                <div id="bar_chart" class="charts"></div>
+                <div id="chart_div" class="charts"></div>
                 <!-- Analysis Content -->
                 <div class="row">
                     <div class="col-lg-12 analysis-content">
@@ -120,30 +175,9 @@ $conn->close();
 
     <!-- ======= Footer ======= -->
     <?php include('footer.php') ?>
+
     <!-- End Footer -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(<?php echo $dataJSON; ?>);
-
-            var options = {
-                title: 'Total Yield Data by crops',
-                legend: {
-                    position: 'none'
-                },
-                bars: 'horizontal' // Horizontal bars
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
-
-            chart.draw(data, options);
-        }
-    </script>
 
 </body>
 

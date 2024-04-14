@@ -4,55 +4,30 @@ include('login_check.php');
 // Database connection
 include('connection.php');
 
-// Fetch data from the database and calculate average yield per year for all items
-$sql = "SELECT Year, Item, AVG(production) AS AverageValue FROM `production_data` GROUP BY Year, Item ORDER BY Year, Item";
+// Fetch data from the database and calculate total yield per item
+$sql = "SELECT c.crop_name AS Item, SUM(pd.production) AS TotalValue 
+        FROM production_data pd
+        JOIN crop c ON pd.crop_id = c.corp_id
+        GROUP BY c.crop_name";
+
 $result = $conn->query($sql);
 
 // Prepare data for Google Charts
 $data = array();
-$items = array(); // Store unique items
-$itemCount = 0;
+$data[] = ['Item', 'Total Value', ['role' => 'style']]; // Add an additional column for style
 if ($result->num_rows > 0) {
+    $colors = ['#3366cc', '#dc3912', '#ff9900', '#109618', '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395', '#994499', '#22aa99', '#aaaa11', '#6633cc', '#e67300', '#8b0707', '#651067', '#329262', '#5574a6', '#3b3eac']; // Define colors for each item
+    $i = 0;
     while ($row = $result->fetch_assoc()) {
-        $year = (string)$row['Year'];
-        $item = (string)$row['Item'];
-        $averageValue = (float)$row['AverageValue'];
-
-        // Add item to the data array if it's not already present
-        if (!in_array($item, $items)) {
-            $items[] = $item;
-            $itemCount++;
-        }
-
-        // Find the index of the item in the data array
-        $itemIndex = array_search($item, $items);
-
-        // Add the average value to the corresponding year and item
-        if (!isset($data[$year])) {
-            $data[$year] = array_fill(0, $itemCount, null);
-        }
-        $data[$year][$itemIndex] = $averageValue;
+        $data[] = [
+            (string)$row['Item'],
+            (float)$row['TotalValue'],
+            $colors[$i % count($colors)] // Assign a color to each item
+        ];
+        $i++;
     }
 }
-
-// Add headers for the items
-$header = ['Year'];
-foreach ($items as $item) {
-    $header[] = $item;
-}
-$dataArray = array($header);
-
-// Fill data array with values
-foreach ($data as $year => $values) {
-    $row = [$year];
-    foreach ($values as $value) {
-        $row[] = $value;
-    }
-    $dataArray[] = $row;
-}
-
-// Convert data to Google Charts DataTable format
-$dataJSON = json_encode($dataArray); // Store JSON data in a variable
+$dataJSON = json_encode($data); // Store JSON data in a variable
 
 // Close database connection
 $conn->close();
@@ -111,10 +86,10 @@ $conn->close();
 
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Crops Separately Average Yield Data by Year</h2>
+                <h2>Crops Data On Total yeild</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
-                    <li>Analysis Page</li>
+                    <li>Analysis Page</a></li>
                 </ol>
 
             </div>
@@ -125,7 +100,7 @@ $conn->close();
         <section class="analysis-section">
             <div class="container">
                 <!-- Graph -->
-                <div id="curve_chart" class="charts"></div>
+                <div id="bar_chart" class="charts"></div>
                 <!-- Analysis Content -->
                 <div class="row">
                     <div class="col-lg-12 analysis-content">
@@ -154,32 +129,17 @@ $conn->close();
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            var data = google.visualization.arrayToDataTable(<?php echo $dataJSON; ?>); // Use $dataJSON variable
+            var data = google.visualization.arrayToDataTable(<?php echo $dataJSON; ?>);
 
             var options = {
-                title: 'Average Yield Data by Year',
-                curveType: 'function',
-                linewidth: 8,
+                title: 'Total Yield Data by crops',
                 legend: {
-                    position: 'bottom'
+                    position: 'none'
                 },
-                isStacked: true,
-                hAxis: {
-                    title: 'Year',
-                    titleTextStyle: {
-                        color: '#333',
-                        bold: true
-                    },
-                    format: '####', // Format years without commas
-                    slantedText: true, // Slant the text
-                    slantedTextAngle: 45 // Angle of slanted text
-                },
-                vAxis: {
-                    minValue: 0
-                }
+                bars: 'horizontal' // Horizontal bars
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
 
             chart.draw(data, options);
         }

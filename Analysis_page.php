@@ -92,7 +92,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="graph_1.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_1.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -127,7 +127,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="graph_2.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_2.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -161,7 +161,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="graph_3.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_3.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -196,7 +196,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_4.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -231,7 +231,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="graph_5.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_5.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 
@@ -266,7 +266,7 @@ include('login_check.php');
 
                                 <hr>
 
-                                <a href="graph_6.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                                <a href="graph_page_6.php" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                             </div>
 

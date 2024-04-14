@@ -233,21 +233,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form action="add_fertilizer_data.php" method="POST">
 
 
+
                         <div class="form-group">
                             <label for="division">Division</label>
                             <select name="division" class="form-control" required>
                                 <option value="">Select Division</option>
                                 <?php
-                                // Assuming you have an array of divisions named $divisions
-                                $divisions = array("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet");
+                                // Database connection
+                                include('connection.php');
 
-                                // Loop through the divisions array to generate options
-                                foreach ($divisions as $division) {
-                                    echo "<option value='$division'>$division</option>";
+                                // Fetch division names and IDs
+                                $sql = "SELECT div_id, division_name FROM division";
+                                $result = $conn->query($sql);
+
+                                // Fetching division names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $div_id = $row['div_id'];
+                                        $division_name = $row['division_name'];
+                                        echo "<option value='$div_id'>$division_name</option>";
+                                    }
                                 }
+
+                                // Close database connection
+                                $conn->close();
                                 ?>
                             </select>
                         </div>
+
 
                         <!-- <div class="form-group">
                             <label for="item">Item</label>

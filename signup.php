@@ -15,7 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssss", $name, $email, $phone, $password);
 
     if ($stmt->execute()) {
-        $message = "Registration successful!";
+        // Set success message
+        $message = "Registration successful! You can now login.";
+
+        // Redirect to login page
+        header('Location: login.php');
+        exit; // Ensure script execution stops after redirection
     } else {
         $message = "Error: " . $stmt->error;
     }
@@ -24,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +62,7 @@ $conn->close();
                                 <div class="card-body p-5">
                                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                    <form action="register.php" method="post">
+                                    <form action="signup.php" method="post">
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="name" class="form-control form-control-lg" name="name" required />

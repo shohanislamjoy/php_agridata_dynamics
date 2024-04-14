@@ -1,5 +1,33 @@
+<?php
+// Database connection
+include('connection.php');
+
+// Fetch rainfall data for each division and year
+$sql = "SELECT Year, Area AS Division, average_rain_fall_mm_per_year AS Rainfall 
+        FROM rainfall";
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Fetch the results into an associative array
+$data = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}
+$dataJSON = json_encode($data);
+
+
+// Close database connection
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 
 <head>
@@ -29,6 +57,55 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/main.css" rel="stylesheet">
+    <!-- Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            <?php
+            // Group data by year
+            $years = [];
+            foreach ($data as $row) {
+                $year = $row['Year'];
+                if (!isset($years[$year])) {
+                    $years[$year] = [];
+                }
+                $years[$year][] = $row;
+            }
+
+            // Draw chart for each year
+            foreach ($years as $year => $yearData) {
+                echo "drawChart$year();";
+            }
+
+            // Generate functions to draw charts for each year
+            foreach ($years as $year => $yearData) {
+                echo "function drawChart$year() {";
+                echo "var data$year = new google.visualization.DataTable();";
+                echo "data$year.addColumn('string', 'Division');";
+                echo "data$year.addColumn('number', 'Rainfall');";
+                echo "data$year.addRows([";
+                foreach ($yearData as $row) {
+                    $division = $row['Division'];
+                    $rainfall = $row['Rainfall'];
+                    echo "['$division', $rainfall],";
+                }
+                echo "]);";
+                echo "var options$year = {";
+                echo "title: 'Rainfall in Divisions - $year in (mm)',";
+                echo "legend: { position: 'top' }";
+                echo "};";
+                echo "var chart$year = new google.visualization.ColumnChart(document.getElementById('chart_div_$year'));";
+                echo "chart$year.draw(data$year, options$year);";
+                echo "}";
+            }
+            ?>
+        }
+    </script>
 
 
 </head>
@@ -48,7 +125,7 @@
 
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Separately Average Yield Data of Crops by Year</h2>
+                <h2>Crops Data On Total yeild</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
                     <li>Analysis Page</li>
@@ -61,19 +138,14 @@
         <!-- Analysis Section -->
         <section class="analysis-section">
             <div class="container">
-                <!-- Graph -->
-                <div class="charts">
-                    <div>
-                        <label for="year_select" style="font-size:28px;">Select Year:</label>
-                        <select id="year_select">
-                            <?php
-                            for ($year = 2016; $year >= 2008; $year--) {
-                                echo "<option value=\"$year\">$year</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+                <div class="row">
+                    <!-- Graph -->
+                    <?php
+                    // Render charts for each year
+                    foreach ($years as $year => $yearData) {
+                        echo "<div class='col-12 col-lg-6 mb-4'><div id='chart_div_$year' style='height: 300px; padding: 20px;'></div></div>";
+                    }
+                    ?>
                 </div>
                 <!-- Analysis Content -->
                 <div class="row">
@@ -95,75 +167,7 @@
     <!-- ======= Footer ======= -->
     <?php include('footer.php') ?>
     <!-- End Footer -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart', 'controls']
-        });
-        google.charts.setOnLoadCallback(drawDashboard);
 
-        function drawDashboard() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Area');
-            data.addColumn('number', 'Total Production');
-
-            var chart = new google.visualization.ChartWrapper({
-                chartType: 'ColumnChart',
-                containerId: 'chart_div',
-                options: {
-                    title: 'Total Production by Area',
-                    legend: {
-                        position: 'none'
-                    },
-                    hAxis: {
-                        title: 'Total Production'
-                    },
-                    vAxis: {
-                        title: 'Area'
-                    }
-
-                }
-            });
-
-            var control = document.getElementById('year_select');
-
-            function fetchData(year) {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var jsonData = JSON.parse(xhr.responseText);
-                            drawChart(jsonData);
-                        } else {
-                            console.error('Error fetching data: ' + xhr.status);
-                        }
-                    }
-                };
-                xhr.open('GET', 'fetch_data.php?year=' + year, true);
-                xhr.send();
-            }
-
-            control.addEventListener('change', function() {
-                var selectedYear = this.value;
-                fetchData(selectedYear);
-            });
-
-            fetchData('2016'); // Default to 2016 data
-        }
-
-        function drawChart(jsonData) {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Area');
-            data.addColumn('number', 'Total Production');
-
-            for (var i = 0; i < jsonData.length; i++) {
-                data.addRow([jsonData[i].Area, parseInt(jsonData[i].TotalProduction)]);
-            }
-
-            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-            chart.draw(data, null);
-        }
-    </script>
 
 </body>
 

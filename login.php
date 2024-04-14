@@ -55,9 +55,11 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
+    <title>Log In </title>
 
     <link rel="stylesheet" href="assets/signup.css">
+    <!-- Favicons -->
+    <link href="assets/img/farm_1.png" rel="icon">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />

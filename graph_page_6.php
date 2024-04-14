@@ -59,8 +59,7 @@ $conn->close();
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/farm_1.png" rel="icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +99,7 @@ $conn->close();
             ]);
 
             var options = {
-                title: 'Fertilizers for Each Crop in 100 Acre',
+                title: 'Fertilizers Used For Each Crop in 100 Acre',
                 hAxis: {
                     title: 'Crop'
                 },
@@ -141,7 +140,7 @@ $conn->close();
 
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Crops Data On Total yeild</h2>
+                <h2>Fertilizers Used For Each Crop in 100 Acre</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
                     <li>Analysis Page</li>

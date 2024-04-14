@@ -3,7 +3,7 @@
     <div class="footer-content position-relative">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 col-md-3 footer-links">
+                <div class="col-lg-2 col-md-3 footer-links footer_logo">
                     <img src="./assets/img/farm_1.png" alt="" class="img-fluid">
                 </div>
                 <!-- End footer links column-->

@@ -80,8 +80,7 @@ $conn->close();
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/farm_1.png" rel="icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,7 +116,7 @@ $conn->close();
 
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-                <h2>Separately Average Yield Data of Crops by Year</h2>
+                <h2>Average Crops Yielding Data of Years</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
                     <li>Analysis Page</li>
@@ -163,7 +162,7 @@ $conn->close();
             var data = google.visualization.arrayToDataTable(<?php echo $dataJSON; ?>); // Use $dataJSON variable
 
             var options = {
-                title: 'Separately Average Yield Data of Crops by Year',
+                title: 'Average Crops Yielding Data of Years',
                 curveType: 'function',
                 linewidth: 8,
                 legend: {

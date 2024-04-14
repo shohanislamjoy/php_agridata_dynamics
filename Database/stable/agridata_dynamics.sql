@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 06:14 PM
+-- Generation Time: Apr 14, 2024 at 07:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,7 +57,7 @@ INSERT INTO `contact` (`id`, `name`, `email`, `message`) VALUES
 --
 
 CREATE TABLE `crop` (
-  `corp_id` int(5) NOT NULL,
+  `crop_id` int(5) NOT NULL,
   `crop_name` varchar(20) DEFAULT NULL,
   `time` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -66,7 +66,7 @@ CREATE TABLE `crop` (
 -- Dumping data for table `crop`
 --
 
-INSERT INTO `crop` (`corp_id`, `crop_name`, `time`) VALUES
+INSERT INTO `crop` (`crop_id`, `crop_name`, `time`) VALUES
 (10901, 'Maize', 'spring'),
 (10902, 'Wheat', 'summer'),
 (10903, 'Potato', 'auttonm'),
@@ -1083,7 +1083,7 @@ ALTER TABLE `contact`
 -- Indexes for table `crop`
 --
 ALTER TABLE `crop`
-  ADD PRIMARY KEY (`corp_id`);
+  ADD PRIMARY KEY (`crop_id`);
 
 --
 -- Indexes for table `division`
@@ -1095,19 +1095,24 @@ ALTER TABLE `division`
 -- Indexes for table `fertilizer`
 --
 ALTER TABLE `fertilizer`
-  ADD PRIMARY KEY (`fd_id`);
+  ADD PRIMARY KEY (`fd_id`),
+  ADD KEY `fk_crop` (`crop_id`);
 
 --
 -- Indexes for table `field`
 --
 ALTER TABLE `field`
-  ADD PRIMARY KEY (`field_id`);
+  ADD PRIMARY KEY (`field_id`),
+  ADD KEY `fk_division` (`div_id`),
+  ADD KEY `fk_field_soil` (`soil_id`);
 
 --
 -- Indexes for table `production_data`
 --
 ALTER TABLE `production_data`
-  ADD PRIMARY KEY (`p_id`);
+  ADD PRIMARY KEY (`p_id`),
+  ADD KEY `fk_production_data_field` (`field_id`),
+  ADD KEY `fk_production_data_crop` (`crop_id`);
 
 --
 -- Indexes for table `rainfall`
@@ -1154,7 +1159,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `crop`
 --
 ALTER TABLE `crop`
-  MODIFY `corp_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10906;
+  MODIFY `crop_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10906;
 
 --
 -- AUTO_INCREMENT for table `division`
@@ -1209,6 +1214,31 @@ ALTER TABLE `testimonials`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `fertilizer`
+--
+ALTER TABLE `fertilizer`
+  ADD CONSTRAINT `fk_crop` FOREIGN KEY (`crop_id`) REFERENCES `crop` (`crop_id`);
+
+--
+-- Constraints for table `field`
+--
+ALTER TABLE `field`
+  ADD CONSTRAINT `fk_division` FOREIGN KEY (`div_id`) REFERENCES `division` (`div_id`),
+  ADD CONSTRAINT `fk_field_soil` FOREIGN KEY (`soil_id`) REFERENCES `soil_type` (`soil_id`);
+
+--
+-- Constraints for table `production_data`
+--
+ALTER TABLE `production_data`
+  ADD CONSTRAINT `fk_field` FOREIGN KEY (`field_id`) REFERENCES `field` (`field_id`),
+  ADD CONSTRAINT `fk_production_data_crop` FOREIGN KEY (`crop_id`) REFERENCES `crop` (`crop_id`),
+  ADD CONSTRAINT `fk_production_data_field` FOREIGN KEY (`field_id`) REFERENCES `field` (`field_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

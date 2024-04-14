@@ -1,5 +1,5 @@
 CREATE TABLE `crop` (
-  `corp_id` int(5) NOT NULL,
+  `crop_id` int(5) NOT NULL,
   `crop_name` varchar(6) DEFAULT NULL,
   `time` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

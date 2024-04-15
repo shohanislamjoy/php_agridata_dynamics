@@ -11,22 +11,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
 
 
-    $crop_name = $_POST['crop_name'];
+    $division_name = $_POST['division_name'];
 
-    $time = $_POST['time'];
+    $area = $_POST['area'];
 
     // Validate data (optional, can be added for better security)
     // ... (e.g., check if domain length is within allowed limit)
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO crop ( crop_name, time) 
+    $sql = "INSERT INTO division ( division_name, area) 
    VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $crop_name, $time);
+    $stmt->bind_param("si", $division_name, $area);
 
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Crop time data added successfully!";
+        $successMessage = "Division added successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add Crop Data</h1>
+                            <h1>Add Division</h1>
                         </div>
 
                     </div>
@@ -238,14 +238,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container mt-5">
 
 
-                    <form action="add_crop_data.php" method="POST">
+                    <form action="add_division_data.php" method="POST">
                         <div class="form-group">
-                            <label for="item">Item</label>
-                            <input type="text" name="crop_name" class="form-control" maxlength="14" required>
+                            <label for="division_name">Division Name</label>
+                            <input type="text" name="division_name" class="form-control" maxlength="14" required>
                         </div>
                         <div class="form-group">
-                            <label for="time">Season</label>
-                            <input type="text" name="time" class="form-control" maxlength="14" required>
+                            <label for="area">Area in Acre</label>
+                            <input type="number" name="area" class="form-control" maxlength="14" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

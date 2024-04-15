@@ -110,6 +110,12 @@ $result = $conn->query($sql);
 								<p>Add Fertilizer Data</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="add_division_data.php" class="nav-link">
+								<i class="nav-icon fas fa-tag"></i>
+								<p>Add Division</p>
+							</a>
+						</li>
 
 						<li class="nav-item">
 							<a href="show_users_admin.php" class="nav-link">

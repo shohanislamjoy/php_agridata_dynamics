@@ -1,0 +1,44 @@
+ <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT crop_id, crop_name FROM crop";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $crop_id = $row['crop_id'];
+                                        $crop_name = $row['crop_name'];
+                                        echo "<option value='$crop_id'>$crop_name</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+
+
+ <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch division names and IDs
+                                $sql = "SELECT div_id, division_name FROM division";
+                                $result = $conn->query($sql);
+
+                                // Fetching division names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $div_id = $row['div_id'];
+                                        $division_name = $row['division_name'];
+                                        echo "<option value='$div_id'>$division_name</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+
+

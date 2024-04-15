@@ -10,7 +10,8 @@ include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
-    $division = $_POST['division'];
+    $div_id = $_POST['division'];
+    $crop_id = $_POST['crop'];
     $year = $_POST['year'];
     $urea = $_POST['urea'];
     $tsp = $_POST['tsp'];
@@ -18,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dap = $_POST['dap'];
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO fertilizer_data (division, Year, urea, tsp, mp, dap) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO fertilizer (div_id, crop_id, Year, urea, tsp, mp, dap) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("siiiii", $division, $year, $urea, $tsp, $mp, $dap);
+    $stmt->bind_param("iisiiii", $div_id, $crop_id, $year, $urea, $tsp, $mp, $dap); // Changed "siiiiii" to "iisiiii"
 
     if ($stmt->execute() === TRUE) {
         $successMessage = "Fertilizer data added successfully!";
@@ -261,6 +262,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </select>
                         </div>
 
+
+
+                        <div class="form-group">
+                            <label for="crop">crop</label>
+                            <select name="crop" class="form-control" required>
+                                <option value="">Select crop</option>
+                                <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT crop_id, crop_name FROM crop";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $crop_id = $row['crop_id'];
+                                        $crop_name = $row['crop_name'];
+                                        echo "<option value='$crop_id'>$crop_name</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+                            </select>
+                        </div>
 
                         <!-- <div class="form-group">
                             <label for="item">Item</label>

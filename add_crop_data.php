@@ -10,23 +10,23 @@ include('connection.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
 
-    $area = $_POST['area'];
-    $item = $_POST['item'];
-    $year = $_POST['year'];
-    $Production = $_POST['value'];
+
+    $crop_name = $_POST['crop_name'];
+
+    $time = $_POST['time'];
 
     // Validate data (optional, can be added for better security)
     // ... (e.g., check if domain length is within allowed limit)
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO production_data ( Area,  Item, Year, Production) 
-   VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO crop ( crop_name, time) 
+   VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssii", $area, $item,  $year, $Production);
+    $stmt->bind_param("ss", $crop_name, $time);
 
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Crop production data added successfully!";
+        $successMessage = "Crop time data added successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -233,36 +233,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                     <form action="add_crop_data.php" method="POST">
-
-
-                        <div class="form-group">
-                            <label for="area">Area</label>
-                            <select name="area" class="form-control" required>
-                                <option value="">Select Division</option>
-                                <?php
-                                // Assuming you have an array of divisions named $divisions
-                                $divisions = array("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet");
-
-                                // Loop through the divisions array to generate options
-                                foreach ($divisions as $division) {
-                                    echo "<option value='$division'>$division</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-
-
                         <div class="form-group">
                             <label for="item">Item</label>
-                            <input type="text" name="item" class="form-control" maxlength="14" required>
+                            <input type="text" name="crop_name" class="form-control" maxlength="14" required>
                         </div>
                         <div class="form-group">
-                            <label for="year_code">Year</label>
-                            <input type="number" name="year" class="form-control" min="2000" max="2023" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="Production">Production</label>
-                            <input type="number" name="value" class="form-control" required>
+                            <label for="time">Season</label>
+                            <input type="text" name="time" class="form-control" maxlength="14" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

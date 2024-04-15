@@ -11,14 +11,14 @@ CREATE TABLE `division` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `fertilizer` (
-  `fertilizer_id` int(11) NOT NULL,
-  `Area` varchar(10) DEFAULT NULL,
-  `crop_id` int(5) DEFAULT NULL,
+  `fd_id` int(11) NOT NULL,
+  `div_id` int(4) DEFAULT NULL,
+  `crop_id` int(12) DEFAULT NULL,
   `Year` int(4) DEFAULT NULL,
-  `urea` int(5) DEFAULT NULL,
-  `tsp` int(5) DEFAULT NULL,
-  `mp` int(5) DEFAULT NULL,
-  `dap` int(4) DEFAULT NULL
+  `urea` int(12) DEFAULT NULL,
+  `tsp` int(12) DEFAULT NULL,
+  `mp` int(12) DEFAULT NULL,
+  `dap` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 

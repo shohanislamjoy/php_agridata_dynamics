@@ -7,7 +7,7 @@ include('connection.php');
 // Fetch data from the database and calculate average yield per year for all items
 $sql = "SELECT pd.Year, c.crop_name AS Item, AVG(pd.production) AS AverageValue 
         FROM production_data pd
-        JOIN crop c ON pd.crop_id = c.corp_id
+        JOIN crop c ON pd.crop_id = c.crop_id
         GROUP BY pd.Year, c.crop_name
         ORDER BY pd.Year, c.crop_name";
 

@@ -7,7 +7,7 @@ include('connection.php');
 // Fetch data from the database and calculate total yield per item
 $sql = "SELECT c.crop_name AS Item, SUM(pd.production) AS TotalValue 
         FROM production_data pd
-        JOIN crop c ON pd.crop_id = c.corp_id
+        JOIN crop c ON pd.crop_id = c.crop_id
         GROUP BY c.crop_name";
 
 $result = $conn->query($sql);

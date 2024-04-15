@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
         // Fetch fertilizer data for the current crop
         $sqlFertilizer = "SELECT urea, tsp, mp, dap
                           FROM fertilizer
-                          WHERE crop_id = (SELECT corp_id FROM crop WHERE crop_name = '$cropName')";
+                          WHERE crop_id = (SELECT crop_id FROM crop WHERE crop_name = '$cropName')";
         $resultFertilizer = $conn->query($sqlFertilizer);
         if ($resultFertilizer->num_rows > 0) {
             // Sum up fertilizer data for the current crop

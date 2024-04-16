@@ -143,7 +143,7 @@ include('login_check.php');
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Fertilizers Used For Each Crop in 100 Acre</h3>
+                                <h3 class="post-title"> Total Production Data of Crops by Year. </h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -247,7 +247,7 @@ include('login_check.php');
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Separately Average Yield Data of Crops by Year.</h3>
+                                <h3 class="post-title">Fertilizers Used For Each Crop in 100 Acre</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">

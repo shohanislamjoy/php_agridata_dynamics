@@ -31,8 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Close statement and connection
     $stmt->close();
     $conn->close();
-} else {
-    $errorMessage = "Error: Form data is not complete.";
 }
 
 ?>

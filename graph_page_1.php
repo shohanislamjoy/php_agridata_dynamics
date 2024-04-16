@@ -103,9 +103,8 @@ $conn->close();
                 <div class="row">
                     <div class="col-lg-12 analysis-content">
                         <h3>Analysis</h3>
-                        <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
-                        <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
-                        <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
+                        <p>The total production data from 2008 to 2017 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
+                        <p>Between 2008 and 2017, potatoes emerged as a significant crop with a total production of 4,70,495 units. Maize, on the other hand, recorded a total production of 1,09,829 units during the same period. Rice production amounted to 35,939 units, while potato production reached 1,71,689 units. Additionally, wheat production totaled 1,20,860 units, and sugarcane contributed 80,427 units to the overall production.</p>
                         <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
                     </div>
 

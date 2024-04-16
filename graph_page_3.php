@@ -118,17 +118,10 @@ $conn->close();
                 </div>
                 <!-- Analysis Content -->
                 <div class="row">
-                    <div class="col-lg-12 analysis-content">
-                        <h3>Analysis</h3>
-                        <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
-                        <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
-                        <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
-                        <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
-                    </div>
+                   
                     <h3>Analysis</h3>
-                    <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
-                    <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
-                    <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
+                    <p>Here is the bar chart of  Rainfall Data of Divisions Based on Years 2008 to 2017 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the rainfall trends.</p>
+                    <p>Customers have the option to choose every year between 2008-2017. In 2008 to 2017 total rainfall of Dhaka per year was 123, 143, 97, 110, …., 104. In 2008 to 2017 total rainfall of Rangpur per year was 109, 132, 142,140,....,129.In 2008 to 2017 total rainfall of Barisal per year was 117, 130, 105, 108,...,137.In 2008 to 2017 total rainfall of Khulna per year was 107, 118, 116, 128,.....,110. In 2008 to 2017 total rainfall of Chittagong per year was 134, 113,  95,125,.....,121. In 2008 to 2017 total rainfall of Sylhet per year was 139, 106, 144, 133,....,101.In 2008 to 2017 total rainfall of Rajshahi per year was 115, 114, 126, 119,....,122. This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
                     <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
                 </div>
 

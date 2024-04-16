@@ -135,9 +135,9 @@ $conn->close();
                 <div class="row">
                     <div class="col-lg-12 analysis-content">
                         <h3>Analysis</h3>
-                        <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
-                        <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
-                        <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
+                        <p>Here is the graph of  total production data from 2008 to 2017 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
+                        <p>Customers have the option to choose every year between 2008-2017. </p>
+                        <p>In 2008 to 2017 total production of Dhaka per year was 43427, 34573, 32178, 32995, …., 29668. In 2008 to 2017 total production of Rangpur per year was 28802, 35987, 37154,36856,....,37830. In 2008 to 2017 total production of Barisal per year was 36227, 42474, 38994, 41728,...,37805. In 2008 to 2017 total production of Khulna per year was 31723, 112318, 29431, 27684,.....,30371. In 2008 to 2017 total production of Chittagong per year was 39439, 39532,  29920,123370,.....,33797. In 2008 to 2017 total production of Sylhet per year was 38880, 31884, 37771, 33936,....,30479. In 2008 to 2017 total production of Rajshahi per year was 30225, 28346, 28030, 31344,....,29643.</p>
                         <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
                     </div>
 

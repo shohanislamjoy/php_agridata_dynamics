@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = 'agridata_dynamics';
+$database = 'agridata_new';
 
 // Create a database connection
 $conn = new mysqli($host, $username, $password, $database);

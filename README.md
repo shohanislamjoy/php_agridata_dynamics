@@ -59,3 +59,21 @@ _Dashboard displaying historical agricultural data with graphical representation
 
 ![Admin Panel](/assets/img/screenshots/8.admindash.png)
 _Administrative panel for managing users, crops, and sensors._
+
+
+![2 review](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/38bc3e3e-b85b-4fd7-80ef-37cd4da51145)
+![3 analysispage](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/59b951fc-792f-4f49-89c1-7d25a3beb546)
+![4 graph_2](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/ecd17cb1-3938-45cc-b52b-fbb6bd495111)
+![5  soil_type](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/266de2cd-8635-4cc7-9533-6d6d9513c4d6)
+![6 graph](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/c6d045f7-8c32-44b8-8d88-8b5d3e348cdb)
+![7 graph](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/9526c9e3-10c4-4a51-8bf1-400ee25ad744)
+
+
+
+## Demo Video
+
+[Watch Demo Video](https://drive.google.com/file/d/1VNf1Bvc4HLTWonPdbIEXNmJBcU3bxInC/view?usp=sharing)
+
+
+
+

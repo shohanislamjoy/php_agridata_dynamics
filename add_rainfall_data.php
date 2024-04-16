@@ -11,22 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data
 
 
-    $type = $_POST['type'];
-
     $area = $_POST['area'];
+
+    $year = $_POST['year'];
+    
+    $rainfall = $_POST['rainfall'];
 
     // Validate data (optional, can be added for better security)
     // ... (e.g., check if domain length is within allowed limit)
 
     // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO soil_type ( type, area) 
-   VALUES (?, ?)";
+    $sql = "INSERT INTO rainfall ( area, year, rainfall) 
+   VALUES (?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $type , $area);
+    $stmt->bind_param("si", $area , $year , $rainfall);
 
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Soil Type Added Successfully!";
+        $successMessage = "Rainfall data Added Successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -197,6 +199,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </li>
 
                         <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="show_users_admin.php" class="nav-link">
                                 <i class="nav-icon  fas fa-users"></i>
                                 <p>Users</p>
@@ -229,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add Soil Type</h1>
+                            <h1>Add Rainfall Data</h1>
                         </div>
 
                     </div>
@@ -238,15 +247,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container mt-5">
 
 
-                    <form action="add_soil_type_data.php" method="POST">
-                        <div class="form-group">
-                            <label for="type">Soil type</label>
-                            <input type="text" name="type" class="form-control" maxlength="14" required>
-                        </div>
+                    <form action="add_rainfall_data.php" method="POST">
                         <div class="form-group">
                             <label for="area">Area</label>
-                            <input type="number" name="area" class="form-control" maxlength="14" required>
+                            <input type="text" name="area" class="form-control" maxlength="14" required>
                         </div>
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="number" name="year" class="form-control" maxlength="14" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rainfall">Rainfall</label>
+                            <input type="number" name="rainfall" class="form-control" maxlength="14" required>
+                        </div>                        
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     <?php if (isset($successMessage)) : ?>

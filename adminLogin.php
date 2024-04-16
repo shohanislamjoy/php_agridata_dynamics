@@ -118,6 +118,13 @@ $result = $conn->query($sql);
 						</li>
 
 						<li class="nav-item">
+							<a href="add_rainfall_data.php" class="nav-link">
+								<i class="nav-icon fas fa-tag"></i>
+								<p>Add Rainfall Data</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
 							<a href="show_users_admin.php" class="nav-link">
 								<i class="nav-icon  fas fa-users"></i>
 								<p>Users</p>
@@ -133,6 +140,8 @@ $result = $conn->query($sql);
 							<a href="adminLogin.php" class="nav-link">
 								<i class="nav-icon  far fa-file-alt"></i>
 								<p>Pages</p>
+							</a>
+						</li>
 							</a>
 						</li>
 					</ul>

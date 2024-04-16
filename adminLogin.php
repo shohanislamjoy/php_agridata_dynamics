@@ -143,8 +143,8 @@ $result = $conn->query($sql);
 
 						<li class="nav-item">
 							<a href="add_field.php" class="nav-link">
-								<i class="nav-icon  fas fa-users"></i>
-								<p>Add Field</p>
+								<i class="nav-icon  fas fa-tag"></i>
+								<p>Add Field data</p>
 							</a>
 						</li>
 

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $area = $_POST['area'];
 
     $year = $_POST['year'];
-    
+
     $rainfall = $_POST['rainfall'];
 
     // Validate data (optional, can be added for better security)
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    VALUES (?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $area , $year , $rainfall);
+    $stmt->bind_param("si", $area, $year, $rainfall);
 
     if ($stmt->execute() === TRUE) {
         $successMessage = "Rainfall data Added Successfully!";
@@ -197,11 +197,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p>Add Division</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="add_rainfall_data.php" class="nav-link">
                                 <i class="nav-icon fas fa-tag"></i>
                                 <p>Add Rainfall Data</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="add_field.php" class="nav-link">
+                                <i class="nav-icon  fas fa-tag"></i>
+                                <p>Add Field data</p>
                             </a>
                         </li>
 
@@ -259,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="form-group">
                             <label for="rainfall">Rainfall</label>
                             <input type="number" name="rainfall" class="form-control" maxlength="14" required>
-                        </div>                        
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     <?php if (isset($successMessage)) : ?>

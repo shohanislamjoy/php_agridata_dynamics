@@ -104,6 +104,43 @@ if (!$userLoggedIn) {
                                 <p>Add Fertilizer Data</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="add_division_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Division</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="add_field.php" class="nav-link">
+                                <i class="nav-icon  fas fa-tag"></i>
+                                <p>Add Field data</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="show_users_admin.php" class="nav-link">

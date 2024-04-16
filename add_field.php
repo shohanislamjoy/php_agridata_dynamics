@@ -23,15 +23,15 @@ if (isset($_POST['division_name']) && isset($_POST['soil_name'])) {
 
     // Prepare an SQL statement to insert data into the 'field' table
     $sql = "INSERT INTO field (div_id, soil_id) VALUES (?, ?)";
-    
+
     // Prepare the statement
     $stmt = $conn->prepare($sql);
-    
+
     // Check if the statement preparation was successful
     if ($stmt) {
         // Bind the parameters
         $stmt->bind_param("ii", $div_id, $soil_id);  // Both div_id and soil_id are expected to be integers
-        
+
         // Execute the statement
         if ($stmt->execute()) {
             echo "Data inserted successfully!";
@@ -204,7 +204,38 @@ if (isset($_POST['division_name']) && isset($_POST['soil_name'])) {
                         <li class="nav-item">
                             <a href="add_division_data.php" class="nav-link">
                                 <i class="nav-icon fas fa-tag"></i>
-                                <p>Add Field</p>
+                                <p>Add Division</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="add_field.php" class="nav-link">
+                                <i class="nav-icon  fas fa-tag"></i>
+                                <p>Add Field data</p>
                             </a>
                         </li>
 

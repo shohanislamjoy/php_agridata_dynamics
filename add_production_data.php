@@ -1,38 +1,39 @@
 <?php
-include('login_check.php');
+include ('login_check.php');
 
 if (!$userLoggedIn) {
     header("location:login.php");
     exit();
 }
 
-include('connection.php');
+include ('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form data
-    $p_id = $_POST['p_id'];
-    $Year = $_POST['year']; // Use correct case for the variable
+    $year = $_POST['year'];
     $production = $_POST['production'];
     $field_id = $_POST['field_id'];
     $crop_id = $_POST['crop_id'];
-    
 
-    // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO production_data (p_id, year, production, field_id, crop_id) VALUES (?, ?, ?, ?, ?)"; // Remove trailing comma
+    // Prepare SQL statement
+    $sql = "INSERT INTO production_data (year, production, field_id, crop_id) VALUES (?, ?, ?, ?)";
 
+    // Prepare and bind parameters for the SQL statement
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iiiii", $p_id, $Year, $production, $field_id, $crop_id); // Use correct case for the variable
+    $stmt->bind_param("iiii", $year, $production, $field_id, $crop_id);
 
+    // Execute the statement
     if ($stmt->execute() === TRUE) {
         $successMessage = "Production data added successfully!";
     } else {
-        $errorMessage = "Error: " . $conn->error;
+        $errorMessage = "Error: " . $stmt->error;
     }
 
-    // Close statement and connection
+    // Close statement
     $stmt->close();
-    $conn->close();
+} else {
+    $errorMessage = "Error: Form data is not complete.";
 }
+
 ?>
 
 
@@ -44,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administrative Panel:: projects</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -133,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                         <h4 class="h4 mb-0"><strong><?php echo $user_name; ?></strong></h4>
-                        <div class="mb-3"><?php echo $user_email;  ?></div>
+                        <div class="mb-3"><?php echo $user_email; ?></div>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-user-cog mr-2"></i> Settings
@@ -155,7 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="./index.php" class="brand-link">
-                <img src="assets/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="assets/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
                 <span class="brand-text font-weight-light">AgriData Dynamics</span>
             </a>
 
@@ -163,9 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-								with font-awesome or any other icon font library -->
+                                with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="adminLogin.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -237,12 +241,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form action="add_production_data.php" method="POST">
 
 
+                        <div class="form-group">
+                            <label for="crop">crop</label>
+                            <select name="crop" class="form-control" required>
+                                <option value="">Select crop</option>
+                                <?php
+                                // Database connection
+                                include ('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT crop_id, crop_name FROM crop";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $crop_id = $row['crop_id'];
+                                        $crop_name = $row['crop_name'];
+                                        echo "<option value='$crop_id'>$crop_name</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+                            </select>
+                        </div>
                     
 
-                        <div class="form-group">
-                            <label for="p_id">p_id</label>
-                            <input type="text" name="p_id" class="form-control" required>
-                        </div>
 
                         <div class="form-group">
                             <label for="year">Year</label>
@@ -256,20 +282,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="field_id">field_id</label>
                             <input type="number" name="field_id" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="crop_id">crop_id</label>
-                            <input type="number" name="crop_id" class="form-control" required>
-                        </div>
-                        
+
+
 
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    <?php if (isset($successMessage)) : ?>
+                    <?php if (isset($successMessage)): ?>
                         <div id="success-message" class="alert alert-success" role="alert">
                             <?php echo $successMessage; ?>
                         </div>
-                    <?php elseif (isset($errorMessage)) : ?>
+                    <?php elseif (isset($errorMessage)): ?>
                         <div id="error-message" class="alert alert-danger" role="alert">
                             <?php echo $errorMessage; ?>
                         </div>
@@ -303,13 +326,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <script>
-        document.getElementById('logout-button').addEventListener('click', function() {
+        document.getElementById('logout-button').addEventListener('click', function () {
             // Redirect to the logout page
             window.location.href = 'logout.php'; // Change 'logout.php' to the actual path of your logout script
         });
 
         function hideMessages() {
-            setTimeout(function() {
+            setTimeout(function () {
                 var successMessage = document.getElementById('success-message');
                 var errorMessage = document.getElementById('error-message');
 

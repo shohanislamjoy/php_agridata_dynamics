@@ -67,7 +67,7 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/charts/g1.png" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\1.png" class="img-fluid" alt="">
                                 <span class="post-date">December 12</span>
                             </div>
 
@@ -102,13 +102,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/charts/g2.png" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\2.png" class="img-fluid" alt="">
                                 <span class="post-date">March 19</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Crops Data On Total yeild</h3>
+                                <h3 class="post-title">Average Crops Yielding Data of Years</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -137,13 +137,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/charts/g3.png" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\3.png" class="img-fluid" alt="">
                                 <span class="post-date">June 24</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Separately Average Yield Data of Crops by Year</h3>
+                                <h3 class="post-title">Fertilizers Used For Each Crop in 100 Acre</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -171,13 +171,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/blog/blog-4.jpg" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\4.png" class="img-fluid" alt="">
                                 <span class="post-date">August 05</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</h3>
+                                <h3 class="post-title"> Rainfall Data of Divisions Based on Years.</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -206,13 +206,13 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/charts/g5.png" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\5.png" class="img-fluid" alt="">
                                 <span class="post-date">December 07</span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
 
-                                <h3 class="post-title">Total Production by Division.</h3>
+                                <h3 class="post-title">Total Production by Soil Type in Every Division</h3>
 
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -241,7 +241,7 @@ include('login_check.php');
                         <div class="post-item position-relative h-100">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="assets/img/charts/g6.png" class="img-fluid" alt="">
+                                <img src="assets\img\analy_img\6.png" class="img-fluid" alt="">
                                 <span class="post-date">December 27</span>
                             </div>
 

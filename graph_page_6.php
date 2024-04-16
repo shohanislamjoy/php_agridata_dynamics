@@ -159,10 +159,12 @@ $conn->close();
                 <div class="row">
                     <div class="col-lg-12 analysis-content">
                         <h3>Analysis</h3>
-                        <p>The total production data from 2000 to 2016 provides a comprehensive overview of the agricultural landscape in Bangladesh, highlighting the production trends of key crops.</p>
-                        <p>Between 2000 and 2016, potatoes emerged as a significant crop with a total production of 4,070,495 units. Maize, on the other hand, recorded a total production of 1,009,829 units during the same period. Rice, paddy production amounted to 315,939 units, while sorghum production reached 1,171,689 units. Additionally, wheat production totaled 1,020,860 units, and soybeans contributed 100,427 units to the overall production.</p>
-                        <p>For yams and cassava, data is available for specific periods. Yams saw a total production of 216,558 units from 2006 to 2011, while cassava production amounted to 339,950 units between 2007 and 2011.</p>
-                        <p>This analysis offers valuable insights into the total production values for each crop, providing a foundation for further examination of regional-specific trends and factors influencing production dynamics.</p>
+                        <p>This Chat about Fertilizers Used For Each Crop in 100 Acre  for Maize Urea 145.616 ton, TSP 44.728 ton, MP 43.767 ton, DAP 27.84 ton,
+ for Wheat Urea 111.82 ton, TSP 42.015 ton, MP 41.237 ton, DAP 26.319 ton,
+For Potato Urea 232.41 ton, TSP 105.989 ton, MP 104.875 ton, DAP 66.721 ton,
+For Rice Urea 277.926 ton, TSP 145.001 ton, MP 143.919 ton, DAP 91.55 ton,
+For sugarcane Urea 171.616 ton, TSP 53.833 ton, MP 52.767 ton, DAP 33.53 ton,
+</p>
                     </div>
 
                 </div>

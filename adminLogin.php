@@ -142,6 +142,13 @@ $result = $conn->query($sql);
 						</li>
 
 						<li class="nav-item">
+							<a href="add_field.php" class="nav-link">
+								<i class="nav-icon  fas fa-users"></i>
+								<p>Add Field</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
 							<a href="show_users_admin.php" class="nav-link">
 								<i class="nav-icon  fas fa-users"></i>
 								<p>Users</p>

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ss", $crop_name, $time);
 
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Crop time data added successfully!";
+        $successMessage = "Crop data added successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -193,6 +193,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a href="add_division_data.php" class="nav-link">
                                 <i class="nav-icon fas fa-tag"></i>
                                 <p>Add Division</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
                             </a>
                         </li>
 

@@ -9,22 +9,21 @@ if (!$userLoggedIn) {
 include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form data
-    $p_id = $_POST['p_id'];
-    $Year = $_POST['year']; // Use correct case for the variable
+    $year = $_POST['year'];
     $production = $_POST['production'];
-    $field_id = $_POST['field_id'];
-    $crop_id = $_POST['crop_id'];
-    
+    $field_id = $_POST['field'];
+    $crop_id = $_POST['crop'];
 
-    // Prepare SQL statement (using prepared statements for security)
-    $sql = "INSERT INTO production_data (p_id, year, production, field_id, crop_id) VALUES (?, ?, ?, ?, ?)"; // Remove trailing comma
+    // Prepare SQL statement
+    $sql = "INSERT INTO production_data (year, production, field_id, crop_id) VALUES (?, ?, ?, ?)";
 
+    // Prepare and bind parameters for the SQL statement
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iiiii", $p_id, $Year, $production, $field_id, $crop_id); // Use correct case for the variable
+    $stmt->bind_param("iiii", $year, $production, $field_id, $crop_id);
 
+    // Execute the statement
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Production data added successfully!";
+        $successMessage = "Production data Added Successfully!";
     } else {
         $errorMessage = "Error: " . $conn->error;
     }
@@ -33,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                         <h4 class="h4 mb-0"><strong><?php echo $user_name; ?></strong></h4>
-                        <div class="mb-3"><?php echo $user_email;  ?></div>
+                        <div class="mb-3"><?php echo $user_email; ?></div>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-user-cog mr-2"></i> Settings
@@ -191,6 +191,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p>Add Division</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="show_users_admin.php" class="nav-link">
@@ -217,7 +241,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- /.sidebar -->
         </aside>
 
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -237,12 +260,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form action="add_production_data.php" method="POST">
 
 
-                    
-
                         <div class="form-group">
-                            <label for="p_id">p_id</label>
-                            <input type="text" name="p_id" class="form-control" required>
+                            <label for="crop">crop</label>
+                            <select name="crop" class="form-control" required>
+                                <option value="">Select crop</option>
+                                <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT crop_id, crop_name FROM crop";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $crop_id = $row['crop_id'];
+                                        $crop_name = $row['crop_name'];
+                                        echo "<option value='$crop_id'>$crop_name</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+                            </select>
                         </div>
+
+
 
                         <div class="form-group">
                             <label for="year">Year</label>
@@ -252,15 +297,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="production">production</label>
                             <input type="number" name="production" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="field_id">field_id</label>
-                            <input type="number" name="field_id" class="form-control" required>
+                            <label for="field">Field</label>
+                            <select name="field" class="form-control" required>
+                                <option value="">Select field</option>
+                                <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT field_id FROM field";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $field_id = $row['field_id'];
+                                        echo "<option value='$field_id'>$field_id</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="crop_id">crop_id</label>
-                            <input type="number" name="crop_id" class="form-control" required>
-                        </div>
-                        
+
+
 
 
                         <button type="submit" class="btn btn-primary">Submit</button>

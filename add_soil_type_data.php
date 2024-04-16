@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $type , $area);
+    $stmt->bind_param("si", $type, $area);
 
     if ($stmt->execute() === TRUE) {
         $successMessage = "Soil Type Added Successfully!";
@@ -193,6 +193,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a href="add_division_data.php" class="nav-link">
                                 <i class="nav-icon fas fa-tag"></i>
                                 <p>Add Division</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
                             </a>
                         </li>
 

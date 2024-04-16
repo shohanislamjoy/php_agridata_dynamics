@@ -1,18 +1,18 @@
 <?php
-include ('login_check.php');
+include('login_check.php');
 
 if (!$userLoggedIn) {
     header("location:login.php");
     exit();
 }
 
-include ('connection.php');
+include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $year = $_POST['year'];
     $production = $_POST['production'];
-    $field_id = $_POST['field_id'];
-    $crop_id = $_POST['crop_id'];
+    $field_id = $_POST['field'];
+    $crop_id = $_POST['crop'];
 
     // Prepare SQL statement
     $sql = "INSERT INTO production_data (year, production, field_id, crop_id) VALUES (?, ?, ?, ?)";
@@ -23,13 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Execute the statement
     if ($stmt->execute() === TRUE) {
-        $successMessage = "Production data added successfully!";
+        $successMessage = "Production data Added Successfully!";
     } else {
-        $errorMessage = "Error: " . $stmt->error;
+        $errorMessage = "Error: " . $conn->error;
     }
 
-    // Close statement
+    // Close statement and connection
     $stmt->close();
+    $conn->close();
 } else {
     $errorMessage = "Error: Form data is not complete.";
 }
@@ -45,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administrative Panel:: projects</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -157,8 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="./index.php" class="brand-link">
-                <img src="assets/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+                <img src="assets/img/farm_1.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AgriData Dynamics</span>
             </a>
 
@@ -166,10 +165,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                                with font-awesome or any other icon font library -->
+								with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="adminLogin.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -193,6 +191,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a href="add_division_data.php" class="nav-link">
                                 <i class="nav-icon fas fa-tag"></i>
                                 <p>Add Division</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_production_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Production Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_sensor_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add sensor Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_soil_type_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Soil Type Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="add_rainfall_data.php" class="nav-link">
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>Add Rainfall Data</p>
                             </a>
                         </li>
 
@@ -221,7 +243,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- /.sidebar -->
         </aside>
 
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -247,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <option value="">Select crop</option>
                                 <?php
                                 // Database connection
-                                include ('connection.php');
+                                include('connection.php');
 
                                 // Fetch crop names and IDs
                                 $sql = "SELECT crop_id, crop_name FROM crop";
@@ -267,7 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 ?>
                             </select>
                         </div>
-                    
+
 
 
                         <div class="form-group">
@@ -278,9 +299,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="production">production</label>
                             <input type="number" name="production" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="field_id">field_id</label>
-                            <input type="number" name="field_id" class="form-control" required>
+                            <label for="field">Field</label>
+                            <select name="field" class="form-control" required>
+                                <option value="">Select field</option>
+                                <?php
+                                // Database connection
+                                include('connection.php');
+
+                                // Fetch crop names and IDs
+                                $sql = "SELECT field_id FROM field";
+                                $result = $conn->query($sql);
+
+                                // Fetching crop names and building the options
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $field_id = $row['field_id'];
+                                        echo "<option value='$field_id'>$field_id</option>";
+                                    }
+                                }
+
+                                // Close database connection
+                                $conn->close();
+                                ?>
+                            </select>
                         </div>
 
 
@@ -288,11 +331,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    <?php if (isset($successMessage)): ?>
+                    <?php if (isset($successMessage)) : ?>
                         <div id="success-message" class="alert alert-success" role="alert">
                             <?php echo $successMessage; ?>
                         </div>
-                    <?php elseif (isset($errorMessage)): ?>
+                    <?php elseif (isset($errorMessage)) : ?>
                         <div id="error-message" class="alert alert-danger" role="alert">
                             <?php echo $errorMessage; ?>
                         </div>
@@ -326,13 +369,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <script>
-        document.getElementById('logout-button').addEventListener('click', function () {
+        document.getElementById('logout-button').addEventListener('click', function() {
             // Redirect to the logout page
             window.location.href = 'logout.php'; // Change 'logout.php' to the actual path of your logout script
         });
 
         function hideMessages() {
-            setTimeout(function () {
+            setTimeout(function() {
                 var successMessage = document.getElementById('success-message');
                 var errorMessage = document.getElementById('error-message');
 

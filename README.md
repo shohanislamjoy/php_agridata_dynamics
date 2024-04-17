@@ -2,6 +2,18 @@
 
 The Agricultural Data Dynamics Platform is a comprehensive solution aimed at enhancing modern farming practices by leveraging PHP technology to manage agricultural data effectively. This platform provides farmers with tools to analyze historical data, generate insightful graphs, and access various administrative features to optimize agricultural operations.
 
+
+
+
+
+# Demo Video
+YOUTUBE: https://www.youtube.com/watch?v=Xvyek7F0QlE
+
+
+
+
+
+
 ## Features
 
 ### 1. Graphical Data Representation
@@ -54,11 +66,17 @@ Develop the platform using PHP to ensure scalability and compatibility with vari
 
 ## Screenshots
 
-![Dashboard](/assets/img/screenshots/1.dash.PNG)
-_Dashboard displaying historical agricultural data with graphical representations._
 
 ![Admin Panel](/assets/img/screenshots/8.admindash.png)
 _Administrative panel for managing users, crops, and sensors._
+
+
+
+
+![Dashboard](/assets/img/screenshots/1.dash.PNG)
+_Dashboard displaying historical agricultural data with graphical representations._
+
+
 
 
 ![2 review](https://github.com/shohanislamjoy/php_agridata_dynamics/assets/106506181/38bc3e3e-b85b-4fd7-80ef-37cd4da51145)
@@ -70,9 +88,13 @@ _Administrative panel for managing users, crops, and sensors._
 
 
 
-## Demo Video
 
-[Watch Demo Video](https://drive.google.com/file/d/1VNf1Bvc4HLTWonPdbIEXNmJBcU3bxInC/view?usp=sharing)
+
+
+
+
+
+
 
 
 
